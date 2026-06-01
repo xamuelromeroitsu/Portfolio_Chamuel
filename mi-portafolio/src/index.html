@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Portafolio</title>
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">Mi Portafolio</div>
+    <button id="theme-toggle" class="button">Cambiar tema</button>
+  </header>
+
+  <main class="site-main">
+    <section class="hero">
+      <h1>Hola, soy [Tu Nombre]</h1>
+      <p>Desarrollador frontend con pasión por crear experiencias digitales atractivas.</p>
+    </section>
+
+    <section class="projects" id="projects-section">
+      <h2>Proyectos</h2>
+      <div class="project-controls">
+        <input type="text" id="project-filter" placeholder="Filtrar proyectos por etiqueta" />
+      </div>
+      <div class="project-grid" id="project-grid">
+        <!-- Proyectos dinámicos -->
+      </div>
+    </section>
+
+    <section class="contact">
+      <h2>Contacto</h2>
+      <form id="contact-form" class="form">
+        <label>
+          Nombre
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" required />
+        </label>
+        <label>
+          Mensaje
+          <textarea name="message" rows="4" required></textarea>
+        </label>
+        <button type="submit" class="button">Enviar</button>
+      </form>
+      <div id="form-message" class="form-message" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 Mi Portafolio</p>
+  </footer>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
