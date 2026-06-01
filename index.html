@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="mi-portafolio/src/css/layout.css" />
   <link rel="stylesheet" href="mi-portafolio/src/css/components.css" />
 </head>
-<body>
+<body id="top">
   <header class="site-header">
     <div class="brand">Mi Portafolio</div>
     <button id="theme-toggle" class="button">Cambiar tema</button>
@@ -55,7 +55,7 @@
     </section>
 
     <section class="contact">
-      <h2>Contacto</h2>
+      <h2 id="contact">Contacto</h2>
       <form id="contact-form" class="form">
         <label>
           Nombre
@@ -76,7 +76,28 @@
   </main>
 
   <footer class="site-footer">
-    <p>© 2026 Mi Portafolio</p>
+    <div class="footer-grid">
+      <div class="footer-branding">
+        <p class="footer-copyright">© 2026 Xamuel Romero</p>
+        <p class="footer-specialties">Comunicaciones · Programación Web · Redes</p>
+      </div>
+      <div class="footer-nav">
+        <h3>Navegación Rápida</h3>
+        <ul>
+          <li><a href="#top">Inicio</a></li>
+          <li><a href="#projects-section">Proyectos</a></li>
+          <li><a href="#contact">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-connections">
+        <h3>Conexiones Profesionales</h3>
+        <ul>
+          <li><a href="https://github.com/tu-usuario" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/tu-perfil" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li><a href="mailto:xamuelromero.itsu@gmail.com">Correo Directo</a></li>
+        </ul>
+      </div>
+    </div>
   </footer>
 
   <script type="module" src="mi-portafolio/src/js/main.js"></script>
