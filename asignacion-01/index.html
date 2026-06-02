@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitácora de Entrenamiento - PRO</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <button id="menu-btn" class="menu-btn" aria-label="Abrir menú">&#9776;</button>
+        
+        <div class="theme-switch-wrapper">
+            <span class="theme-label">🌙 Dark</span>
+            <label class="theme-switch" for="theme-checkbox">
+                <input type="checkbox" id="theme-checkbox" />
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </nav>
+
+    <aside id="sidebar" class="sidebar">
+        <button id="close-btn" class="close-btn" aria-label="Cerrar menú">&times;</button>
+        <ul class="sidebar-links">
+            <li><a href="#day-1" class="nav-link">Lunes - Pecho</a></li>
+            <li><a href="#day-2" class="nav-link">Martes - Espalda</a></li>
+            <li><a href="#day-3" class="nav-link">Miércoles - Piernas</a></li>
+            <li><a href="#day-4" class="nav-link">Jueves - Hombros</a></li>
+            <li><a href="#day-5" class="nav-link">Viernes - Bíceps/Tríceps</a></li>
+            <li><a href="#day-6" class="nav-link">Sábado - Cardio</a></li>
+        </ul>
+    </aside>
+
+    <div id="sidebar-overlay" class="overlay"></div>
+
+    <header class="app-header">
+        <h1 class="brand-logo">
+            <span class="brand-main">BITÁCORA</span>
+            <span class="brand-sub">TRAINING</span>
+        </h1>
+    </header>
+
+    <section class="summary-panel container">
+        <div class="summary-stats">
+            <h2>Resumen Semanal</h2>
+            <p id="weekly-progress-text">0 de 0 ejercicios completados</p>
+            
+            <div class="progress-bar-container">
+                <div id="weekly-progress-bar" class="progress-bar"></div>
+            </div>
+            
+            <p id="achievement-message" class="achievement-message hidden">
+                ¡Objetivo alcanzado! 🎉 ¡Excelente constancia esta semana!
+            </p>
+        </div>
+
+        <div class="summary-controls">
+            <button id="btn-reset" class="btn btn-danger">Reiniciar Semana</button>
+            <button id="btn-timer" class="btn btn-primary">Descanso</button>
+            <span id="timer-display" class="timer-display"></span>
+        </div>
+    </section>
+
+    <main id="app-container" class="container">
+        </main>
+
+    <script src="app.js" defer></script>
+</body>
+</html>
