@@ -1,7 +1,22 @@
 const projects = [
-  { title: 'Proyecto 1', description: 'Descripción breve del proyecto.', tags: ['JavaScript', 'UI'] },
-  { title: 'Proyecto 2', description: 'Descripción breve del proyecto.', tags: ['CSS', 'Responsive'] },
-  { title: 'Proyecto 3', description: 'Descripción breve del proyecto.', tags: ['HTML', 'Accesibilidad'] }
+  {
+    title: 'Asignación 01: Vanilla JS (Fase 1 y 2)',
+    description: 'Proyecto completo que incluye UI, interacciones y seguimiento de estado en vanilla JavaScript.',
+    tags: ['JavaScript', 'UI', 'Fase 1', 'Fase 2'],
+    link: './asignacion-01/index.html'
+  },
+  {
+    title: 'Asignación 02: JS Modular (Refactorización)',
+    description: 'Versión refactorizada con módulos, mejor estructura y experiencia de usuario más limpia.',
+    tags: ['JS Modular', 'Refactorización', 'Arquitectura'],
+    link: './asignacion-02/index.html'
+  },
+  {
+    title: 'Más proyectos',
+    description: 'Explora más trabajos, mejoras y proyectos en desarrollo próximamente.',
+    tags: ['Portfolio', 'Próximamente'],
+    link: null
+  }
 ];
 
 export function initProjectFilter() {
@@ -10,13 +25,28 @@ export function initProjectFilter() {
 
   function render(list) {
     if (!grid) return;
-    grid.innerHTML = list.map(project => `
-      <article class="project-card">
-        <h3>${project.title}</h3>
-        <p>${project.description}</p>
-        <small>${project.tags.join(' · ')}</small>
-      </article>
-    `).join('');
+
+    if (list.length === 0) {
+      grid.innerHTML = '<p class="no-results">No se encontraron proyectos con esa búsqueda.</p>';
+      return;
+    }
+
+    grid.innerHTML = list.map(project => {
+      return `
+        <div class="project-card">
+          <div class="project-card-content">
+            <div>
+              <h3>${project.title}</h3>
+              <p>${project.description}</p>
+            </div>
+            <div class="project-footer">
+              <div class="project-tags">${project.tags.map(tag => `<span>${tag}</span>`).join('')}</div>
+              ${project.link ? `<a class="project-link" href="${project.link}">Ver proyecto</a>` : ''}
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
   }
 
   function filterProjects() {
