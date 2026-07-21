@@ -12,6 +12,34 @@ const projects = [
     link: './asignacion-02/index.html'
   },
   {
+    title: 'LunaShop: Tienda de Artículos',
+    description: 'Tienda en línea para la venta de artículos con catálogo, carrito de compras y pasarela de pago.',
+    tags: ['E-commerce', 'UI', 'React'],
+    link: 'https://asignacion-5.vercel.app/',
+    external: true
+  },
+  {
+    title: 'Auditoría e Ingeniería del Caos',
+    description: 'Práctica de auditoría y aplicación de ingeniería del caos para evaluar resiliencia de sistemas.',
+    tags: ['Auditoría', 'DevOps', 'Resiliencia'],
+    link: 'https://xamuelromeroitsu.github.io/practica_de_auditoria-e-ing_del_caos/',
+    external: true
+  },
+  {
+    title: 'Consola del Programador',
+    description: 'Herramienta web para evaluar y diagnosticar páginas web, similar a las DevTools del navegador.',
+    tags: ['Herramientas', 'DevTools', 'JavaScript'],
+    link: 'https://developerstools-console.vercel.app/',
+    external: true
+  },
+  {
+    title: 'Página de Mecánica Dental',
+    description: 'Sitio web para laboratorio de mecánica dental con catálogo de servicios, procedimientos y contacto.',
+    tags: ['Dental', 'Landing Page', 'UI'],
+    link: 'https://proyecto-mec-dental.vercel.app/',
+    external: true
+  },
+  {
     title: 'Más proyectos',
     description: 'Explora más trabajos, mejoras y proyectos en desarrollo próximamente.',
     tags: ['Portfolio', 'Próximamente'],
@@ -41,7 +69,7 @@ export function initProjectFilter() {
             </div>
             <div class="project-footer">
               <div class="project-tags">${project.tags.map(tag => `<span>${tag}</span>`).join('')}</div>
-              ${project.link ? `<a class="project-link" href="${project.link}">Ver proyecto</a>` : ''}
+              ${project.link ? `<a class="project-link" href="${project.link}" ${project.external ? 'target="_blank" rel="noopener noreferrer"' : ''}>${project.external ? 'Ver en vivo ↗' : 'Ver proyecto'}</a>` : ''}
             </div>
           </div>
         </div>
