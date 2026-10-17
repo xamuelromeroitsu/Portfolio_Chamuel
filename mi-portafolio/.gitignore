@@ -7,6 +7,9 @@ dist/
 build/
 .cache/
 
+# Datos de runtime del backend
+server/data/
+
 # Archivos del sistema operativo (Basura del sistema)
 .DS_Store
 Thumbs.db

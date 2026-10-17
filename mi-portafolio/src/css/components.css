@@ -46,3 +46,27 @@ label {
 .project-card p {
   color: var(--color-muted);
 }
+
+.site-nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.site-nav a {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.site-nav a:hover {
+  color: var(--color-primary);
+}
+
+.field-error {
+  color: #ef4444;
+  font-size: 0.82rem;
+}
+
+.form-message--error {
+  color: #ef4444;
+}

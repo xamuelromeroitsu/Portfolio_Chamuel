@@ -47,46 +47,4 @@ const projects = [
   }
 ];
 
-export function initProjectFilter() {
-  const grid = document.getElementById('project-grid');
-  const filterInput = document.getElementById('project-filter');
-
-  function render(list) {
-    if (!grid) return;
-
-    if (list.length === 0) {
-      grid.innerHTML = '<p class="no-results">No se encontraron proyectos con esa búsqueda.</p>';
-      return;
-    }
-
-    grid.innerHTML = list.map(project => {
-      return `
-        <div class="project-card">
-          <div class="project-card-content">
-            <div>
-              <h3>${project.title}</h3>
-              <p>${project.description}</p>
-            </div>
-            <div class="project-footer">
-              <div class="project-tags">${project.tags.map(tag => `<span>${tag}</span>`).join('')}</div>
-              ${project.link ? `<a class="project-link" href="${project.link}" ${project.external ? 'target="_blank" rel="noopener noreferrer"' : ''}>${project.external ? 'Ver en vivo ↗' : 'Ver proyecto'}</a>` : ''}
-            </div>
-          </div>
-        </div>
-      `;
-    }).join('');
-  }
-
-  function filterProjects() {
-    const query = filterInput?.value.toLowerCase() || '';
-    const filtered = projects.filter(project =>
-      project.title.toLowerCase().includes(query) ||
-      project.description.toLowerCase().includes(query) ||
-      project.tags.some(tag => tag.toLowerCase().includes(query))
-    );
-    render(filtered);
-  }
-
-  render(projects);
-  filterInput?.addEventListener('input', filterProjects);
-}
+export default projects;

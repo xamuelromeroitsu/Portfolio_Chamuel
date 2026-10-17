@@ -1,11 +1,31 @@
 {
   "name": "mi-portafolio",
-  "version": "1.0.0",
-  "description": "Portafolio personal con estructura modular de HTML, CSS y JavaScript.",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "description": "Portafolio personal con React + Vite y backend Node.js/Express.",
   "scripts": {
-    "start": "echo \"Abrir src/index.html en el navegador\"",
-    "build": "echo \"No hay compilación configurada\""
+    "dev": "vite",
+    "dev:server": "node --watch server/index.js",
+    "dev:all": "concurrently -k -n client,server -c blue,green \"npm:dev\" \"npm:dev:server\"",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "node server/index.js"
   },
   "author": "Tu Nombre",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@hookform/resolvers": "^5.9.1",
+    "cors": "^2.8.6",
+    "express": "^5.3.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-hook-form": "^7.90.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.1.2",
+    "concurrently": "^10.0.6",
+    "vite": "^8.3.4"
+  }
 }
