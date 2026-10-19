@@ -1,9 +1,5 @@
 {
-  "functions": {
-    "server/index.js": {
-      "runtime": "node@24"
-    }
-  },
+  
   "routes": [
     {
       "src": "/api/(.*)",
