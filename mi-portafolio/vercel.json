@@ -1,6 +1,14 @@
 {
   "routes": [
     {
+      "src": "/asignacion-01",
+      "dest": "/asignacion-01/index.html"
+    },
+    {
+      "src": "/asignacion-02",
+      "dest": "/asignacion-02/index.html"
+    },
+    {
       "src": "/api/(.*)",
       "dest": "server/index.js"
     },
