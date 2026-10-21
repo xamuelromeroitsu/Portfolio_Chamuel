@@ -13,7 +13,7 @@ export default function useLanyardLayout() {
       // En móviles angostos centramos y reducimos la tarjeta para que no tape el texto.
       if (width <= 520) {
         setLayout({
-          size: height <= 650 ? 0.28 : 0.34,
+          size: height <= 650 ? 0.36 : 0.42,
           anchor: 'center',
         });
       } else if (width <= 760 || height <= 600) {

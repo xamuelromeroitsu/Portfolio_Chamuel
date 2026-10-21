@@ -1,5 +1,5 @@
 // useEffect/useRef gestionan el ciclo de vida del canvas; Three.js dibuja y anima la tarjeta en WebGL.
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 
 import './Lanyard.css';
@@ -733,6 +733,7 @@ const Lanyard = ({
   const containerRef = useRef(null);
   const settingsRef = useRef(null);
   const applyRef = useRef(null);
+  const [webGLUnavailable, setWebGLUnavailable] = useState(false);
 
   settingsRef.current = {
     frontImage,
@@ -768,7 +769,9 @@ const Lanyard = ({
     let renderer;
     try {
       renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
-    } catch {
+    } catch (error) {
+      console.error('No se pudo iniciar WebGL para la tarjeta del lanyard.', error);
+      setWebGLUnavailable(true);
       return undefined;
     }
     renderer.setClearColor(0x000000, 0);
@@ -779,6 +782,12 @@ const Lanyard = ({
     canvas.className = 'lanyard-canvas';
     canvas.setAttribute('aria-hidden', 'true');
     container.appendChild(canvas);
+    const onContextLost = event => {
+      event.preventDefault();
+      console.error('Se perdió el contexto WebGL de la tarjeta del lanyard.');
+      setWebGLUnavailable(true);
+    };
+    canvas.addEventListener('webglcontextlost', onContextLost);
 
     const anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
     const scene = new THREE.Scene();
@@ -1285,6 +1294,7 @@ const Lanyard = ({
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
       document.removeEventListener('visibilitychange', onVisibility);
+      canvas.removeEventListener('webglcontextlost', onContextLost);
       window.removeEventListener('pointerdown', onPointerDown, true);
       window.removeEventListener('pointermove', onPointerMove, true);
       window.removeEventListener('pointerup', onPointerUp, true);
@@ -1300,7 +1310,13 @@ const Lanyard = ({
     };
   }, []);
 
-  return <div ref={containerRef} className={`lanyard ${className}`.trim()} style={style} />;
+  return (
+    <div ref={containerRef} className={`lanyard ${className}`.trim()} style={style}>
+      {webGLUnavailable && frontImage && (
+        <img className="lanyard-fallback" src={frontImage} alt="" aria-hidden="true" />
+      )}
+    </div>
+  );
 };
 
 export default Lanyard;
