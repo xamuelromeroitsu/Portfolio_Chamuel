@@ -1,10 +1,10 @@
-'use client';
-
+// useEffect/useRef gestionan el ciclo de vida del canvas; Three.js dibuja y anima la tarjeta en WebGL.
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 import './Lanyard.css';
 
+// Ajustes internos de geometría y física. Cambia primero las props del componente antes de tocar estas constantes.
 const CARD_SIZES = {
   portrait: [1.6, 2.25],
   landscape: [2.25, 1.6]
@@ -701,6 +701,11 @@ const stepSimulation = (sim, dt, physics, time) => {
   sim.calm = energy < 2e-4 ? sim.calm + dt : 0;
 };
 
+/**
+ * Tarjeta 3D suspendida por una cinta.
+ * Props principales: imágenes, color/acabado, size/anchor para el diseño y damping/elasticity/breeze para física.
+ * strapLength ajusta el área alcanzada por la tarjeta; interactive e intro activan interacción y animación inicial.
+ */
 const Lanyard = ({
   frontImage,
   backImage,

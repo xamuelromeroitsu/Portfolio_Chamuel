@@ -1,4 +1,5 @@
 export default function ProjectCard({ project }) {
+  // Cada tarjeta recibe un objeto de data/projects.js; external decide si abre otra pestaña.
   const { title, description, tags, link, external } = project;
 
   return (

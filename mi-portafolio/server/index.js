@@ -9,10 +9,12 @@ import { contactSchema } from '../src/data/contactSchema.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 
+// Habilita solicitudes web y parsea los cuerpos JSON enviados por el formulario.
 app.use(cors());
 app.use(express.json());
 
 app.get('/api/projects', (_req, res) => {
+  // La API entrega el mismo catálogo que se usa como respaldo local en el cliente.
   res.json(projects);
 });
 
@@ -20,6 +22,7 @@ const dataDir = path.join(__dirname, 'data');
 const messagesFile = path.join(dataDir, 'messages.json');
 
 app.post('/api/contact', (req, res) => {
+  // Valida los campos antes de guardar; el mismo esquema se usa en React.
   const parsed = contactSchema.safeParse(req.body);
 
   if (!parsed.success) {
@@ -32,6 +35,7 @@ app.post('/api/contact', (req, res) => {
   const message = { ...parsed.data, createdAt: new Date().toISOString() };
 
   try {
+    // Los mensajes se guardan en server/data/messages.json; mkdir crea la carpeta si aún no existe.
     mkdirSync(dataDir, { recursive: true });
     const messages = existsSync(messagesFile) ? JSON.parse(readFileSync(messagesFile, 'utf8')) : [];
     messages.push(message);

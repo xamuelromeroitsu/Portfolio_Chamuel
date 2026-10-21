@@ -1,3 +1,4 @@
+// Contenido personal centralizado: edita aquí nombre, descripción, habilidades, estadísticas y redes.
 const profile = {
   name: 'Tu Nombre',
   role: 'Desarrollador Web Full Stack',

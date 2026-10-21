@@ -1,5 +1,6 @@
-import { useTheme } from '../hooks/useTheme';
-import profile from '../data/profile';
+// useTheme comparte la preferencia de tema; profile aporta el nombre mostrado en la navegación.
+import { useTheme } from '../../hooks/useTheme';
+import profile from '../../data/profile';
 
 export default function Header() {
   const { theme, toggleTheme } = useTheme();
@@ -12,6 +13,7 @@ export default function Header() {
         <a href="#proyectos">Proyectos</a>
         <a href="#contacto">Contacto</a>
       </nav>
+      {/* toggleTheme alterna claro/oscuro; el texto comunica el modo al que cambiará. */}
       <button id="theme-toggle" className="button button-secondary" type="button" onClick={toggleTheme}>
         {theme === 'dark' ? 'Modo claro' : 'Modo oscuro'}
       </button>

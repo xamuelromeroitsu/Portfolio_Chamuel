@@ -1,3 +1,5 @@
+// Catálogo local de respaldo. Agrega un objeto para mostrar una tarjeta nueva.
+// link puede ser relativo para páginas del mismo sitio; usa external: true para dominios externos.
 const projects = [
   {
     title: 'Asignación 01: Vanilla JS (Fase 1 y 2)',

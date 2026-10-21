@@ -1,9 +1,11 @@
+/* Distribución y responsive de secciones. Los valores de ancho y separación definen el ritmo general. */
 .site-shell {
   position: relative;
   isolation: isolate;
 }
 
 .lanyard-area {
+  /* El canvas se limita al encabezado/hero y queda como referencia para la capa superpuesta. */
   position: relative;
   isolation: isolate;
 }
@@ -25,6 +27,7 @@
 }
 
 .lanyard-overlay {
+  /* La capa es visualmente superior, pero pointer-events permite seguir usando los elementos debajo. */
   position: absolute;
   inset: 0;
   z-index: 3;

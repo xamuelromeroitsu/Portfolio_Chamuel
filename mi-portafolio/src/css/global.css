@@ -1,3 +1,4 @@
+/* Base compartida por toda la página: reset, tipografía, color de fondo y controles nativos. */
 * {
   box-sizing: border-box;
   margin: 0;

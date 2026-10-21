@@ -1,5 +1,7 @@
-import profile from '../data/profile';
+// El pie reutiliza la identidad y las redes definidas en data/profile.js.
+import profile from '../../data/profile';
 
+// Mantén estos destinos alineados con los ids de las secciones de App.jsx.
 const navLinks = [
   { label: 'Inicio', href: '#inicio' },
   { label: 'Proyectos', href: '#proyectos' },

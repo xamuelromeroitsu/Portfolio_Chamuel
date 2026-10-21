@@ -1,10 +1,12 @@
-import profile from '../data/profile';
+// profile contiene el texto editable del hero y los datos resumidos que aparecen en la tarjeta visual.
+import profile from '../../data/profile';
 
 export default function Hero() {
   const { name, role, description, skills, stats } = profile;
 
   return (
     <section className="hero" id="inicio">
+      {/* El id inicio es el destino de los enlaces del menú y del pie de página. */}
       <div className="hero-content">
         <span className="hero-label">Portafolio</span>
         <h1>

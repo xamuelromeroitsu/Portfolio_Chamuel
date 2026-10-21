@@ -1,6 +1,8 @@
+// useEffect carga datos remotos, useState guarda búsqueda/estados y useMemo evita filtrar sin cambios.
 import { useEffect, useMemo, useState } from 'react';
 import ProjectCard from './ProjectCard.jsx';
-import localProjects from '../data/projects';
+// Los datos locales permiten mostrar el portafolio aunque la API no esté disponible.
+import localProjects from '../../data/projects';
 
 export default function Projects() {
   const [projects, setProjects] = useState(localProjects);
@@ -9,6 +11,7 @@ export default function Projects() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    // En desarrollo Vite reenvía /api al servidor definido en vite.config.js.
     fetch('/api/projects')
       .then((response) => {
         if (!response.ok) throw new Error('Respuesta no válida');
@@ -20,6 +23,7 @@ export default function Projects() {
   }, []);
 
   const filtered = useMemo(() => {
+    // La búsqueda se aplica al título, la descripción y las etiquetas de cada proyecto.
     const search = query.trim().toLowerCase();
     if (!search) return projects;
     return projects.filter(

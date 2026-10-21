@@ -1,7 +1,9 @@
+// React Hook Form administra valores/errores y zodResolver conecta el formulario con el esquema Zod.
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { contactSchema } from '../data/contactSchema';
+// Las reglas de campos están en data/contactSchema.js y también se usan en el servidor.
+import { contactSchema } from '../../data/contactSchema';
 
 export default function ContactForm() {
   const [status, setStatus] = useState(null);
@@ -15,6 +17,7 @@ export default function ContactForm() {
   const onSubmit = async (values) => {
     setStatus(null);
     try {
+      // El endpoint guarda el mensaje a través del backend; modifica la ruta solo si cambia la API.
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
