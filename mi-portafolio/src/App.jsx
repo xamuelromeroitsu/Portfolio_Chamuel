@@ -7,7 +7,7 @@ import Footer from './components/Footer.jsx';
 import Lanyard from './components/Lanyard.jsx';
 
 export default function App() {
-  const [lanyardLayout, setLanyardLayout] = useState({ size: 0.72, anchor: 'right' });
+  const [lanyardLayout, setLanyardLayout] = useState({ size: 0.56, anchor: 'right' });
 
   useEffect(() => {
     const updateLanyardLayout = () => {
@@ -16,13 +16,13 @@ export default function App() {
 
       if (width <= 520) {
         setLanyardLayout({
-          size: height <= 650 ? 0.34 : 0.42,
+          size: height <= 650 ? 0.28 : 0.34,
           anchor: 'center',
         });
       } else if (width <= 760 || height <= 600) {
-        setLanyardLayout({ size: 0.52, anchor: 'right' });
+        setLanyardLayout({ size: 0.42, anchor: 'right' });
       } else {
-        setLanyardLayout({ size: 0.72, anchor: 'right' });
+        setLanyardLayout({ size: 0.56, anchor: 'right' });
       }
     };
 
@@ -33,26 +33,30 @@ export default function App() {
 
   return (
     <div className="site-shell">
-      <div className="lanyard-overlay">
-        <Lanyard
-          frontImage="/card-front.png"
-          backImage="/card-back.png"
-          strapImage="/band.png"
-          cardColor="#06b6d4"
-          finish="metallic"
-          anchor={lanyardLayout.anchor}
-          strapColor="#000000"
-          size={lanyardLayout.size}
-          damping={0.35}
-          elasticity={0.65}
-          breeze={0.55}
-          intro
-          interactive
-        />
+      <div className="lanyard-area">
+        <div className="lanyard-overlay">
+          <Lanyard
+            frontImage="/card-front.png"
+            backImage="/card-back.png"
+            strapImage="/band.png"
+            cardColor="#06b6d4"
+            finish="metallic"
+            anchor={lanyardLayout.anchor}
+            strapColor="#000000"
+            size={lanyardLayout.size}
+            damping={0.35}
+            elasticity={0.65}
+            breeze={0.55}
+            intro
+            interactive
+          />
+        </div>
+        <Header />
+        <section className="site-main site-main--hero">
+          <Hero />
+        </section>
       </div>
-      <Header />
       <main className="site-main">
-        <Hero />
         <Projects />
         <section className="contact" id="contacto">
           <h2>Contacto</h2>

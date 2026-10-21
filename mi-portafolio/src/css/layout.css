@@ -3,6 +3,11 @@
   isolation: isolate;
 }
 
+.lanyard-area {
+  position: relative;
+  isolation: isolate;
+}
+
 .site-header,
 .site-footer {
   width: 100%;
@@ -13,21 +18,17 @@
 
 .site-header {
   position: relative;
-  z-index: 3;
+  z-index: 2;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .lanyard-overlay {
-  position: fixed;
+  position: absolute;
   inset: 0;
-  z-index: 20;
-  width: 100vw;
-  height: 100vh;
-  height: 100dvh;
-  padding-top: env(safe-area-inset-top, 0px);
-  box-sizing: border-box;
+  z-index: 3;
+  width: 100%;
   pointer-events: none;
 }
 
@@ -46,6 +47,11 @@
   padding: 1.5rem;
   display: grid;
   gap: 2.25rem;
+}
+
+.site-main--hero {
+  position: relative;
+  z-index: 1;
 }
 
 .hero,
