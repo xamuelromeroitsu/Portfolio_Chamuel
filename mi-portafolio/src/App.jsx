@@ -8,6 +8,12 @@ import useLanyardLayout from './components/hero/useLanyardLayout.js';
 import Projects from './components/projects/Projects.jsx';
 import ContactSection from './components/contact/ContactSection.jsx';
 
+// Importa las imágenes desde src/assets para que Vite las incluya en el build.
+// Se usan las extensiones .jpg y .png tal como están guardadas en esa carpeta.
+import cardFront from './assets/images/lanyard/card-front.jpg';
+import cardBack from './assets/images/lanyard/card-back.jpg';
+import band from './assets/images/lanyard/band.png';
+
 export default function App() {
   const lanyardLayout = useLanyardLayout();
 
@@ -17,14 +23,11 @@ export default function App() {
         {/* El área común permite que la tarjeta se superponga al encabezado y al hero sin seguir el scroll. */}
         <div className="lanyard-area">
           <div className="lanyard-overlay">
-            {/*
-              Personaliza las imágenes desde public/. size/anchor son responsive;
-              damping, elasticity y breeze ajustan el movimiento de la física.
-            */}
+            {/* size/anchor son responsive; damping, elasticity y breeze ajustan el movimiento. */}
             <Lanyard
-              frontImage="/card-front.png"
-              backImage="/card-back.png"
-              strapImage="/band.png"
+              frontImage={cardFront}
+              backImage={cardBack}
+              strapImage={band}
               cardColor="#06b6d4"
               finish="metallic"
               anchor={lanyardLayout.anchor}
