@@ -62,12 +62,3 @@ label {
 .site-nav a:hover {
   color: var(--color-primary);
 }
-
-.field-error {
-  color: #ef4444;
-  font-size: 0.82rem;
-}
-
-.form-message--error {
-  color: #ef4444;
-}

@@ -1,7 +1,8 @@
-// Contenido personal centralizado: edita aquí nombre, descripción, habilidades, estadísticas y redes.
+// Contenido del portafolio centralizado, separado de la lógica de presentación y envío.
 const profile = {
-  name: 'Tu Nombre',
-  role: 'Desarrollador Web Full Stack',
+  name: 'Xamuel Romero',
+  role: 'Desarrollador de Software web y móvil',
+  contactEmail: 'xamuelromero.itsu@gmail.com',
   description:
     'Diseño y construyo sitios y aplicaciones web rápidas, accesibles y bien estructuradas. Este portafolio reúne mis proyectos, prácticas y trabajos más recientes.',
   skills: ['JavaScript', 'React', 'Node.js', 'HTML5', 'CSS3', 'Git'],

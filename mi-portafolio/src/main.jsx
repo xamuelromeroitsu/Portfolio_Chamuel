@@ -7,6 +7,8 @@ import './css/variables.css';
 import './css/global.css';
 import './css/layout.css';
 import './css/components.css';
+// Los estilos específicos del contacto viven junto a la funcionalidad para poder mantenerla como módulo.
+import './components/contact/contact.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

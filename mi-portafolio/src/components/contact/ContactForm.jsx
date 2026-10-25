@@ -1,9 +1,11 @@
-// React Hook Form administra valores/errores y zodResolver conecta el formulario con el esquema Zod.
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-// Las reglas de campos están en data/contactSchema.js y también se usan en el servidor.
-import { contactSchema } from '../../data/contactSchema';
+import { contactSchema } from '../../data/contactSchema.js';
+import {
+  ContactServiceError,
+  sendContactMessage
+} from '../../services/contactService.js';
 
 export default function ContactForm() {
   const [status, setStatus] = useState(null);
@@ -12,47 +14,140 @@ export default function ContactForm() {
     handleSubmit,
     reset,
     formState: { errors, isSubmitting }
-  } = useForm({ resolver: zodResolver(contactSchema) });
+  } = useForm({
+    resolver: zodResolver(contactSchema),
+    // Valida mientras se escribe para corregir errores antes de intentar el envío.
+    mode: 'onChange',
+    reValidateMode: 'onChange'
+  });
 
   const onSubmit = async (values) => {
     setStatus(null);
+
     try {
-      // El endpoint guarda el mensaje a través del backend; modifica la ruta solo si cambia la API.
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values)
-      });
-      if (!response.ok) throw new Error('Error en el servidor');
-      setStatus({ type: 'success', text: 'Mensaje enviado correctamente. ¡Gracias!' });
+      await sendContactMessage(values);
       reset();
-    } catch {
-      setStatus({ type: 'error', text: 'No se pudo enviar el mensaje. Inténtalo de nuevo.' });
+      setStatus({
+        type: 'success',
+        text: '¡Gracias por tu mensaje! Te responderé en menos de 24-48 horas.'
+      });
+    } catch (error) {
+      console.error('No se pudo enviar el mensaje de contacto:', error);
+      if (error instanceof ContactServiceError && error.code === 'autoresponder') {
+        // La notificación ya se entregó; limpiar evita que el usuario reenvíe y duplique el mensaje.
+        reset();
+        setStatus({
+          type: 'warning',
+          text: 'Tu mensaje llegó correctamente, pero no se pudo enviar el correo de confirmación. No necesitas volver a enviarlo.'
+        });
+        return;
+      }
+
+      setStatus({
+        type: 'error',
+        text: error instanceof ContactServiceError
+          ? error.userMessage
+          : 'No se pudo enviar el mensaje. Revisa tu conexión e inténtalo de nuevo.'
+      });
     }
   };
 
   return (
-    <form className="form" id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
-      <label>
-        Nombre
-        <input type="text" {...register('name')} />
-        {errors.name && <small className="field-error">{errors.name.message}</small>}
-      </label>
-      <label>
-        Correo
-        <input type="email" {...register('email')} />
-        {errors.email && <small className="field-error">{errors.email.message}</small>}
-      </label>
-      <label>
-        Mensaje
-        <textarea rows="5" {...register('message')} />
-        {errors.message && <small className="field-error">{errors.message.message}</small>}
-      </label>
-      <button className="button" type="submit" disabled={isSubmitting}>
+    <form className="form contact-form" id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+      <div className="form-heading">
+        <span className="contact-eyebrow">Formulario de contacto</span>
+        <h3>Cuéntame sobre tu idea</h3>
+        <p>Completa tus datos y me pondré en contacto contigo pronto.</p>
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="contact-name">Nombre</label>
+        <input
+          id="contact-name"
+          type="text"
+          autoComplete="name"
+          placeholder="Tu nombre"
+          aria-invalid={Boolean(errors.name)}
+          aria-describedby={errors.name ? 'contact-name-error' : undefined}
+          {...register('name')}
+        />
+        {errors.name && (
+          <span className="field-error" id="contact-name-error">
+            {errors.name.message}
+          </span>
+        )}
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="contact-email">Correo electrónico</label>
+        <input
+          id="contact-email"
+          type="email"
+          autoComplete="email"
+          placeholder="tu@correo.com"
+          aria-invalid={Boolean(errors.email)}
+          aria-describedby={errors.email ? 'contact-email-error' : undefined}
+          {...register('email')}
+        />
+        {errors.email && (
+          <span className="field-error" id="contact-email-error">
+            {errors.email.message}
+          </span>
+        )}
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="contact-subject">Asunto / Motivo de contacto</label>
+        <select
+          id="contact-subject"
+          defaultValue=""
+          required
+          aria-invalid={Boolean(errors.subject)}
+          aria-describedby={errors.subject ? 'contact-subject-error' : undefined}
+          {...register('subject')}
+        >
+          <option value="" disabled>Selecciona un motivo</option>
+          <option value="Oferta laboral">Oferta laboral</option>
+          <option value="Proyecto freelance">Proyecto freelance</option>
+          <option value="Consulta">Consulta</option>
+          <option value="Colaboración / Otro">Colaboración / Otro</option>
+        </select>
+        {errors.subject && (
+          <span className="field-error" id="contact-subject-error">
+            {errors.subject.message}
+          </span>
+        )}
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="contact-message">Mensaje</label>
+        <textarea
+          id="contact-message"
+          rows="5"
+          placeholder="¿En qué puedo ayudarte?"
+          aria-invalid={Boolean(errors.message)}
+          aria-describedby={errors.message ? 'contact-message-error' : undefined}
+          {...register('message')}
+        />
+        {errors.message && (
+          <span className="field-error" id="contact-message-error">
+            {errors.message.message}
+          </span>
+        )}
+      </div>
+
+      <button className="button contact-submit" type="submit" disabled={isSubmitting}>
+        {isSubmitting && <span className="contact-spinner" aria-hidden="true" />}
         {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
+        {!isSubmitting && <span aria-hidden="true">→</span>}
       </button>
+
+      {/* Errores requieren alerta inmediata; éxitos y avisos se anuncian como estados no intrusivos. */}
       {status && (
-        <p className={`form-message${status.type === 'error' ? ' form-message--error' : ''}`}>
+        <p
+          className={`form-status form-status--${status.type}`}
+          role={status.type === 'error' ? 'alert' : 'status'}
+        >
           {status.text}
         </p>
       )}
