@@ -1,5 +1,37 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/es/",
+      "statusCode": 301
+    }
+  ],
   "routes": [
+    {
+      "src": "/es",
+      "dest": "/es/index.html"
+    },
+    {
+      "src": "/es/(.*)",
+      "dest": "/es/index.html"
+    },
+    {
+      "src": "/en",
+      "dest": "/en/index.html"
+    },
+    {
+      "src": "/en/(.*)",
+      "dest": "/en/index.html"
+    },
+    {
+      "src": "/pt",
+      "dest": "/pt/index.html"
+    },
+    {
+      "src": "/pt/(.*)",
+      "dest": "/pt/index.html"
+    },
     {
       "src": "/asignacion-01",
       "dest": "/asignacion-01/index.html"
@@ -10,11 +42,11 @@
     },
     {
       "src": "/api/(.*)",
-      "dest": "server/index.js"
+      "dest": "/server/index.js"
     },
     {
       "src": "/(.*)",
-      "dest": "dist/index.html"
+      "dest": "/index.html"
     }
   ],
   "buildCommand": "npm run build",
