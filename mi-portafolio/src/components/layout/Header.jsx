@@ -1,13 +1,9 @@
 // Header transparente con menú escalonado. Sin logo ni nombre: navegación,
-// tema y redes viven dentro del panel. Inicio usa la dirección normal "/".
+// tema y redes viven dentro del panel. Los enlaces respetan el idioma de la URL.
+import { useTranslation } from 'react-i18next';
 import StaggeredMenu from './StaggeredMenu.jsx';
 import { useTheme } from '../../hooks/useTheme';
 import profile from '../../data/profile';
-
-const menuItems = [
-  { label: 'Inicio', ariaLabel: 'Ir al inicio', link: '/' },
-  { label: 'Contacto', ariaLabel: 'Ir a la sección de contacto', link: '#contacto' }
-];
 
 const socialItems = [
   { label: 'GitHub', link: profile.social.github },
@@ -16,8 +12,19 @@ const socialItems = [
 ];
 
 export default function Header() {
+  const { t, i18n } = useTranslation();
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === 'dark';
+  const lang = i18n.resolvedLanguage || 'es';
+
+  const menuItems = [
+    { label: t('nav.home'), ariaLabel: t('nav.homeAria'), link: `/${lang}/` },
+    {
+      label: t('nav.contact'),
+      ariaLabel: t('nav.contactAria'),
+      link: `/${lang}/#contacto`
+    }
+  ];
 
   // El control se pasa al panel para que el cambio de tema viva dentro del menú.
   const themeControl = (
@@ -25,9 +32,9 @@ export default function Header() {
       type="button"
       className="theme-toggle"
       onClick={toggleTheme}
-      aria-label={isDark ? 'Activar modo claro' : 'Activar modo oscuro'}
+      aria-label={isDark ? t('theme.activateLight') : t('theme.activateDark')}
       aria-pressed={isDark}
-      title={isDark ? 'Modo claro' : 'Modo oscuro'}
+      title={isDark ? t('theme.light') : t('theme.dark')}
     >
       <span className="theme-toggle__icons" aria-hidden="true">
         <svg className={`theme-toggle__sun${isDark ? ' is-active' : ''}`} viewBox="0 0 24 24">
@@ -44,7 +51,7 @@ export default function Header() {
   return (
     <>
       <a className="skip-link" href="#contenido">
-        Saltar al contenido
+        {t('common.skipToContent')}
       </a>
       <StaggeredMenu
         isFixed
@@ -55,8 +62,15 @@ export default function Header() {
         displaySocials
         displayItemNumbering
         themeControl={themeControl}
-        menuLabel="Menú"
-        closeLabel="Cerrar"
+        menuLabel={t('nav.menuLabel')}
+        closeLabel={t('nav.closeLabel')}
+        navLabel={t('nav.mainAria')}
+        menuAriaLabel={t('nav.menuAria')}
+        openMenuLabel={t('nav.openMenu')}
+        closeMenuLabel={t('nav.closeMenu')}
+        noLinksLabel={t('nav.noLinks')}
+        themeLabel={t('nav.theme')}
+        socialsLabel={t('nav.socials')}
       />
     </>
   );

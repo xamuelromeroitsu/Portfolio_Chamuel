@@ -1,6 +1,9 @@
+import { useTranslation } from 'react-i18next';
+
 export default function ProjectCard({ project }) {
-  // Cada tarjeta recibe un objeto de data/projects.js; external decide si abre otra pestaña.
-  const { title, description, tags, link, external } = project;
+  // Cada tarjeta recibe un proyecto neutral ya combinado con su copia traducida.
+  const { t } = useTranslation();
+  const { title, description, tags = [], link, external } = project;
 
   return (
     <article className="project-card">
@@ -20,7 +23,7 @@ export default function ProjectCard({ project }) {
             href={link}
             {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
           >
-            {external ? 'Ver en vivo ↗' : 'Ver proyecto'}
+            {external ? `${t('projects.viewLive')} ↗` : t('projects.view')}
           </a>
         )}
       </div>

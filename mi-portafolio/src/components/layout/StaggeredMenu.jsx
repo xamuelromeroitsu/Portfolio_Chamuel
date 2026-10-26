@@ -18,6 +18,13 @@ export const StaggeredMenu = ({
   className,
   menuLabel = 'Menú',
   closeLabel = 'Cerrar',
+  navLabel = 'Navegación principal',
+  menuAriaLabel = 'Menú de navegación',
+  openMenuLabel = 'Abrir menú',
+  closeMenuLabel = 'Cerrar menú',
+  noLinksLabel = 'Sin enlaces',
+  themeLabel = 'Tema',
+  socialsLabel = 'Redes',
   isFixed = false,
   desktopInline = false,
   closeOnClickAway = true,
@@ -39,6 +46,10 @@ export const StaggeredMenu = ({
   const closeTweenRef = useRef(null);
   const textCycleAnimRef = useRef(null);
   const scrollLockRef = useRef(null);
+
+  useEffect(() => {
+    if (!openRef.current) setTextLines([menuLabel]);
+  }, [menuLabel]);
 
   // Posiciona el panel y las capas fuera de pantalla al montar. Solo depende de
   // position para que un cambio de tema con el panel abierto no lo reinicie.
@@ -447,7 +458,7 @@ export const StaggeredMenu = ({
       <header ref={headerRef} className="staggered-menu-header">
         {desktopInline && (
           <div className="sm-inline">
-            <nav className="sm-inline-nav" aria-label="Navegación principal">
+            <nav className="sm-inline-nav" aria-label={navLabel}>
               <ul className="sm-inline-list" role="list">
                 {items.map((item, index) => (
                   <li key={`${item.label}-${index}`}>
@@ -480,7 +491,7 @@ export const StaggeredMenu = ({
           <button
             ref={toggleBtnRef}
             className="sm-toggle"
-            aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
+            aria-label={open ? closeMenuLabel : openMenuLabel}
             aria-expanded={open}
             aria-controls="staggered-menu-panel"
             onClick={toggleMenu}
@@ -509,11 +520,11 @@ export const StaggeredMenu = ({
         ref={panelRef}
         className="staggered-menu-panel"
         aria-hidden={!open}
-        aria-label="Menú de navegación"
+        aria-label={menuAriaLabel}
         inert={!open}
       >
         <div className="sm-panel-inner">
-          <nav aria-label="Navegación principal">
+          <nav aria-label={navLabel}>
             <ul
               className="sm-panel-list"
               role="list"
@@ -536,7 +547,7 @@ export const StaggeredMenu = ({
               ) : (
                 <li className="sm-panel-itemWrap" aria-hidden="true">
                   <span className="sm-panel-item">
-                    <span className="sm-panel-itemLabel">Sin enlaces</span>
+                    <span className="sm-panel-itemLabel">{noLinksLabel}</span>
                   </span>
                 </li>
               )}
@@ -545,14 +556,14 @@ export const StaggeredMenu = ({
 
           {themeControl && (
             <div className="sm-theme">
-              <span className="sm-theme-label">Tema</span>
+              <span className="sm-theme-label">{themeLabel}</span>
               {themeControl}
             </div>
           )}
 
           {displaySocials && socialItems.length > 0 && (
             <div className="sm-socials">
-              <h3 className="sm-socials-title">Redes</h3>
+              <h3 className="sm-socials-title">{socialsLabel}</h3>
               <ul className="sm-socials-list" role="list">
                 {socialItems.map((social, index) => (
                   <li className="sm-socials-item" key={`${social.label}-${index}`}>

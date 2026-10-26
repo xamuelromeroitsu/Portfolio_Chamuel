@@ -1,25 +1,27 @@
 // El pie reutiliza la identidad y las redes definidas en data/profile.js.
+import { useTranslation } from 'react-i18next';
 import profile from '../../data/profile';
 
-// Mantén estos destinos alineados con los ids de las secciones de App.jsx.
-const navLinks = [
-  { label: 'Inicio', href: '#inicio' },
-  { label: 'Proyectos', href: '#proyectos' },
-  { label: 'Contacto', href: '#contacto' }
-];
-
 export default function Footer() {
-  const { name, role, social } = profile;
+  const { t, i18n } = useTranslation();
+  const { name, social } = profile;
+  const lang = i18n.resolvedLanguage || 'es';
+
+  const navLinks = [
+    { label: t('nav.home'), href: `/${lang}/#inicio` },
+    { label: t('nav.projects'), href: `/${lang}/#proyectos` },
+    { label: t('nav.contact'), href: `/${lang}/#contacto` }
+  ];
 
   return (
     <footer className="site-footer">
       <div className="footer-grid">
         <div className="footer-branding">
           <strong>{name}</strong>
-          <p className="footer-specialties">{role}</p>
+          <p className="footer-specialties">{t('hero.role')}</p>
         </div>
         <nav className="footer-nav">
-          <h3>Navegación</h3>
+          <h3>{t('footer.navigation')}</h3>
           <ul>
             {navLinks.map((link) => (
               <li key={link.href}>
@@ -29,7 +31,7 @@ export default function Footer() {
           </ul>
         </nav>
         <div className="footer-connections">
-          <h3>Redes</h3>
+          <h3>{t('footer.socials')}</h3>
           <ul>
             <li>
               <a href={social.github} target="_blank" rel="noopener noreferrer">

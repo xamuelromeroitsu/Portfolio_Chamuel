@@ -9,7 +9,10 @@ vi.mock('@emailjs/browser', () => ({
 const contact = {
   name: 'Chamuel Romero',
   email: 'chamuel@example.com',
-  subject: 'Consulta',
+  subjectCode: 'consultation',
+  subjectLabel: 'Consultation',
+  subjectLabelEs: 'Consulta',
+  language: 'en',
   message: 'Quiero conversar sobre un proyecto.'
 };
 
@@ -22,25 +25,31 @@ describe('sendContactMessage', () => {
     vi.stubEnv('VITE_EMAILJS_PUBLIC_KEY', 'public_test_key');
   });
 
-  it('sends the admin notification and then the user autoresponse', async () => {
+  it('sends the Spanish admin notification and the localized autoresponse', async () => {
     emailjs.send.mockResolvedValue({ status: 200 });
 
     await sendContactMessage(contact);
 
-    const expectedParams = { ...contact, to_email: contact.email };
+    const commonParams = {
+      ...contact,
+      to_email: contact.email
+    };
+    const adminParams = { ...commonParams, subject: contact.subjectLabelEs };
+    const userParams = { ...commonParams, subject: contact.subjectLabel };
+
     expect(emailjs.send).toHaveBeenCalledTimes(2);
     expect(emailjs.send).toHaveBeenNthCalledWith(
       1,
       'service_test',
       'template_admin',
-      expectedParams,
+      adminParams,
       { publicKey: 'public_test_key' }
     );
     expect(emailjs.send).toHaveBeenNthCalledWith(
       2,
       'service_test',
       'template_user',
-      expectedParams,
+      userParams,
       { publicKey: 'public_test_key' }
     );
   });

@@ -1,23 +1,28 @@
 import emailjs from '@emailjs/browser';
 
-const errorMessages = {
-  configuration: 'El formulario no está disponible. Inténtalo más tarde o contáctame por mis redes.',
-  rateLimit: 'Has enviado varios mensajes recientemente. Espera un momento y vuelve a intentarlo.',
-  unavailable: 'El servicio de contacto no está disponible temporalmente. Inténtalo más tarde.',
-  delivery: 'No se pudo enviar el mensaje. Revisa tu conexión e inténtalo de nuevo.',
-  autoresponder: 'El mensaje llegó, pero no se pudo enviar el correo de confirmación.'
-};
-
+// `code` es una constante interna, no texto: la UI lo traduce con
+// `contact.errors.<code>`. Códigos válidos: configuration, rateLimit,
+// unavailable, delivery y autoresponder. Si añades uno, agrégalo a los tres locales.
 export class ContactServiceError extends Error {
   constructor(code, cause) {
-    super(errorMessages[code], { cause });
+    super(code, { cause });
     this.name = 'ContactServiceError';
     this.code = code;
-    this.userMessage = errorMessages[code];
   }
 }
 
-export async function sendContactMessage({ name, email, subject, message }) {
+// Recibe los códigos y etiquetas ya resueltos por `ContactForm`: no traduce nada
+// aquí. `subjectLabel` va en el idioma del visitante y `subjectLabelEs` siempre
+// en español para la notificación del administrador.
+export async function sendContactMessage({
+  name,
+  email,
+  subjectCode,
+  subjectLabel,
+  subjectLabelEs,
+  language,
+  message
+}) {
   // Vite reemplaza estas variables al compilar; la clave pública está diseñada para uso en cliente.
   const {
     VITE_EMAILJS_SERVICE_ID,
@@ -35,21 +40,27 @@ export async function sendContactMessage({ name, email, subject, message }) {
     throw new ContactServiceError('configuration');
   }
 
-  // Se comparten los mismos datos entre las dos plantillas; la autorespuesta usa to_email.
-  const templateParams = {
+  const commonParams = {
     name,
     email,
-    subject,
     message,
-    to_email: email
+    to_email: email,
+    subjectCode,
+    subjectLabel,
+    subjectLabelEs,
+    language
   };
+
+  // El admin recibe siempre el asunto en español; la autorespuesta usa el idioma del visitante.
+  const adminParams = { ...commonParams, subject: subjectLabelEs };
+  const userParams = { ...commonParams, subject: subjectLabel };
 
   try {
     // Primero se entrega la notificación al administrador para no confirmar mensajes que no llegaron.
     await emailjs.send(
       VITE_EMAILJS_SERVICE_ID,
       VITE_EMAILJS_TEMPLATE_ADMIN_ID,
-      templateParams,
+      adminParams,
       { publicKey: VITE_EMAILJS_PUBLIC_KEY }
     );
   } catch (cause) {
@@ -74,7 +85,7 @@ export async function sendContactMessage({ name, email, subject, message }) {
     await emailjs.send(
       VITE_EMAILJS_SERVICE_ID,
       VITE_EMAILJS_TEMPLATE_USER_ID,
-      templateParams,
+      userParams,
       { publicKey: VITE_EMAILJS_PUBLIC_KEY }
     );
   } catch (cause) {
