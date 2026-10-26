@@ -20,6 +20,7 @@
   aspect-ratio: 1.6 / 2.25;
   object-fit: cover;
   border-radius: 0.75rem;
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.35);
+  /* Sombra neutra: funciona sobre fondos claros y oscuros sin teñirse de azul. */
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
   transform: translate(-50%, -50%) rotate(3deg);
 }

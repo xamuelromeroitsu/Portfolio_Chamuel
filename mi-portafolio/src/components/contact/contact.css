@@ -33,9 +33,10 @@
 
 .contact-email-label {
   padding: 0.25rem 0.65rem;
-  border: 1px solid rgba(59, 130, 246, 0.18);
+  /* Borde neutro + fondo teal suave: la etiqueta se integra en ambos temas. */
+  border: 1px solid var(--color-border);
   border-radius: 999px;
-  background: rgba(59, 130, 246, 0.08);
+  background: var(--color-accent-soft);
   color: var(--color-primary);
   font-size: 0.78rem;
   font-weight: 600;
@@ -65,7 +66,7 @@
 .contact-form {
   gap: 1.15rem;
   padding: clamp(1.25rem, 3vw, 2rem);
-  border: 1px solid rgba(148, 163, 184, 0.18);
+  border: 1px solid var(--color-border);
   border-radius: 1.25rem;
   background: var(--color-surface);
   box-shadow: var(--shadow);
@@ -86,7 +87,8 @@
 .form-group textarea {
   width: 100%;
   padding: 0.9rem 1rem;
-  border: 1px solid rgba(148, 163, 184, 0.35);
+  /* Tokens del tema: evita bordes azulados y mantiene contraste en oscuro. */
+  border: 1px solid var(--color-border);
   border-radius: 0.85rem;
   background: var(--color-bg);
   color: var(--color-text);
@@ -97,14 +99,14 @@
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+  border-color: var(--color-ring);
+  box-shadow: 0 0 0 4px var(--color-accent-soft);
 }
 
 .form-group input[aria-invalid="true"],
 .form-group select[aria-invalid="true"],
 .form-group textarea[aria-invalid="true"] {
-  border-color: #dc2626;
+  border-color: var(--color-danger);
 }
 
 .form-group input::placeholder,
@@ -118,10 +120,16 @@
   appearance: none;
   min-height: 3.2rem;
   padding-right: 2.75rem;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  /* El SVG en data URI no hereda currentColor: el trazo usa el gris del tema claro. */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23737373' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 1rem center;
   cursor: pointer;
+}
+
+/* En oscuro se sustituye el trazo por el gris legible del tema. */
+[data-theme="dark"] .form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23a3a3a3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
 }
 
 .form-group select option {
@@ -135,7 +143,7 @@
 }
 
 .form-group .field-error {
-  color: #dc2626;
+  color: var(--color-danger);
   font-size: 0.875rem;
 }
 
@@ -169,11 +177,12 @@
 }
 
 .contact-spinner {
-  /* Indicador animado durante el envío mientras el botón permanece deshabilitado. */
+  /* Indicador animado durante el envío mientras el botón permanece deshabilitado.
+     Usa el color de texto del botón teal para mantener contraste. */
   width: 1rem;
   height: 1rem;
-  border: 2px solid rgba(255, 255, 255, 0.45);
-  border-top-color: white;
+  border: 2px solid rgba(4, 47, 46, 0.35);
+  border-top-color: var(--color-on-accent);
   border-radius: 50%;
   animation: contact-spin 0.7s linear infinite;
 }
@@ -197,7 +206,8 @@
   gap: 0.4rem;
   min-height: 2.25rem;
   padding: 0.4rem 0.65rem;
-  border: 1px solid rgba(59, 130, 246, 0.35);
+  /* Borde y texto teal: acción secundaria pero claramente vinculada a la marca. */
+  border: 1px solid var(--color-accent);
   border-radius: 999px;
   background: transparent;
   color: var(--color-primary);
@@ -218,7 +228,7 @@
 
 .copy-email-button:hover {
   border-color: var(--color-primary);
-  background: rgba(59, 130, 246, 0.08);
+  background: var(--color-accent-soft);
 }
 
 .copy-email-status {
@@ -227,11 +237,11 @@
 }
 
 .copy-email-status--success {
-  color: var(--color-secondary);
+  color: var(--color-success);
 }
 
 .copy-email-status--error {
-  color: #dc2626;
+  color: var(--color-danger);
 }
 
 .form-status {
@@ -241,21 +251,21 @@
 }
 
 .form-status--success {
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  background: rgba(16, 185, 129, 0.1);
-  color: var(--color-secondary);
+  border: 1px solid var(--color-success);
+  background: var(--color-success-soft);
+  color: var(--color-success);
 }
 
 .form-status--warning {
-  border: 1px solid rgba(217, 119, 6, 0.3);
-  background: rgba(217, 119, 6, 0.1);
-  color: #b45309;
+  border: 1px solid var(--color-warning);
+  background: var(--color-warning-soft);
+  color: var(--color-warning);
 }
 
 .form-status--error {
-  border: 1px solid rgba(220, 38, 38, 0.25);
-  background: rgba(220, 38, 38, 0.08);
-  color: #dc2626;
+  border: 1px solid var(--color-danger);
+  background: var(--color-danger-soft);
+  color: var(--color-danger);
 }
 
 @media (max-width: 760px) {

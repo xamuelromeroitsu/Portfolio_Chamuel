@@ -57,10 +57,13 @@
   z-index: 1;
 }
 
+/* Los tres contenedores comparten superficie y sombra. El borde es necesario en
+   el tema oscuro: separa la tarjeta (#171717) del fondo (#0a0a0a). */
 .hero,
 .projects,
 .contact {
   background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 2rem;
@@ -81,9 +84,11 @@
   align-items: center;
   padding: 0.45rem 0.9rem;
   border-radius: 999px;
-  background: var(--color-primary);
-  color: white;
+  /* Relleno teal con texto oscuro para mantener contraste legible. */
+  background: var(--color-accent);
+  color: var(--color-on-accent);
   font-size: 0.8rem;
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -111,7 +116,13 @@
 .hero-actions .button-secondary {
   background: transparent;
   color: var(--color-text);
-  box-shadow: inset 0 0 0 1px var(--color-text);
+  box-shadow: inset 0 0 0 1px var(--color-border);
+}
+
+/* El hover usa el teal suave para reforzar la marca sin competir con el botón principal. */
+.hero-actions .button-secondary:hover {
+  background: var(--color-accent-soft);
+  box-shadow: inset 0 0 0 1px var(--color-accent);
 }
 
 .projects-header {
@@ -124,7 +135,8 @@
   width: 100%;
   padding: 1rem 1.2rem;
   border-radius: 0.95rem;
-  border: 1px solid rgba(15, 23, 42, 0.12);
+  /* Fondo de página dentro de la superficie: crea profundidad sutil en ambos temas. */
+  border: 1px solid var(--color-border);
   background: var(--color-bg);
   color: var(--color-text);
   transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
@@ -132,45 +144,21 @@
 
 .projects-header input:focus {
   outline: none;
-  border-color: rgba(59, 130, 246, 0.6);
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.08);
+  border-color: var(--color-ring);
+  /* Anillo de foco translúcido derivado del teal de marca. */
+  box-shadow: 0 0 0 4px var(--color-accent-soft);
 }
 
+/* Rejilla única de proyectos: auto-fit evita media queries extra y 240px es el
+   ancho mínimo efectivo que ya usaba el diseño. */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.5rem;
 }
 
-.project-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 1.5rem;
-  padding: 1.75rem;
-  border-radius: var(--radius);
-  background: var(--color-surface);
-  border: 1px solid rgba(15, 23, 42, 0.06);
-  box-shadow: var(--shadow);
-  color: var(--color-text);
-  text-decoration: none;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(59, 130, 246, 0.2);
-  box-shadow: 0 30px 75px rgba(15, 23, 42, 0.12);
-}
-
-.project-card h3 {
-  margin-bottom: 0.85rem;
-}
-
-.project-card p {
-  color: var(--color-muted);
-  line-height: 1.7;
-}
+/* La base visual de .project-card vive en components.css.
+   Aquí solo se conserva la estructura interna (etiquetas y enlace). */
 
 .project-footer {
   display: grid;
@@ -186,7 +174,8 @@
 .project-tags span {
   padding: 0.45rem 0.75rem;
   border-radius: 999px;
-  background: rgba(59, 130, 246, 0.1);
+  /* Fondo translúcido + texto teal legible; funciona sobre claro y oscuro. */
+  background: var(--color-accent-soft);
   color: var(--color-primary);
   font-size: 0.82rem;
 }
@@ -196,15 +185,15 @@
   display: inline-flex;
   padding: 0.85rem 1.15rem;
   border-radius: 999px;
-  background: var(--color-primary);
-  color: white;
+  background: var(--color-accent);
+  color: var(--color-on-accent);
   text-decoration: none;
   font-weight: 700;
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .project-link:hover {
-  background: #2563eb;
+  background: var(--color-accent-strong);
   transform: translateY(-1px);
 }
 
@@ -226,7 +215,7 @@
   align-items: center;
   padding: 0.65rem 1rem;
   border-radius: 999px;
-  background: rgba(59, 130, 246, 0.1);
+  background: var(--color-accent-soft);
   color: var(--color-primary);
   font-size: 0.9rem;
 }
@@ -241,7 +230,9 @@
   min-height: 10rem;
   padding: 1.75rem;
   border-radius: 1.5rem;
-  background: var(--color-bg);
+  /* Superficie elevada + borde: la tarjeta se distingue del hero en tema oscuro. */
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
   box-shadow: var(--shadow);
   display: grid;
   gap: 1rem;
@@ -250,12 +241,6 @@
 .hero-card strong {
   font-size: 2rem;
   color: var(--color-primary);
-}
-
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
 }
 
 .form {
@@ -326,9 +311,9 @@
     order: 1;
   }
 
-  .site-header > .button {
+  /* El toggle mantiene un tamaño táctil cómodo; ya no necesita padding de texto. */
+  .site-header > .theme-toggle {
     order: 2;
-    padding: 0.7rem 0.9rem;
   }
 
   .site-nav {

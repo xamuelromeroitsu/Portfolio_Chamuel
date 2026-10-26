@@ -10,9 +10,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
     <script>
-      // Aplica el tema antes de cargar React para evitar mostrar un tema incorrecto por un instante.
-      const savedTheme = localStorage.getItem('theme') || 'light';
-      document.documentElement.setAttribute('data-theme', savedTheme);
+      // Se ejecuta antes de React para evitar el destello de un tema incorrecto (FOUC).
+      // Prioridad: elección guardada por el usuario > preferencia del sistema operativo.
+      (() => {
+        const stored = localStorage.getItem('theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme =
+          !stored || stored === 'system'
+            ? (systemDark ? 'dark' : 'light')
+            : stored;
+
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
     </script>
   </head>
   <body>
