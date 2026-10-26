@@ -1,0 +1,140 @@
+{
+  "meta": {
+    "title": "Xamuel Romero | Desenvolvedor de Software web e mobile",
+    "description": "Portfólio de Xamuel Romero: projetos, habilidades e contato. Desenvolvo sites e aplicações web rápidos, acessíveis e bem estruturados."
+  },
+  "common": {
+    "skipToContent": "Pular para o conteúdo"
+  },
+  "nav": {
+    "home": "Início",
+    "projects": "Projetos",
+    "contact": "Contato",
+    "homeAria": "Ir para o início",
+    "contactAria": "Ir para a seção de contato",
+    "mainAria": "Navegação principal",
+    "menuAria": "Menu de navegação",
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu",
+    "noLinks": "Sem links",
+    "theme": "Tema",
+    "socials": "Redes",
+    "menuLabel": "Menu",
+    "closeLabel": "Fechar",
+    "language": "Idioma"
+  },
+  "theme": {
+    "light": "Modo claro",
+    "dark": "Modo escuro",
+    "activateLight": "Ativar modo claro",
+    "activateDark": "Ativar modo escuro"
+  },
+  "hero": {
+    "label": "Portfólio",
+    "role": "Desenvolvedor de Software web e mobile",
+    "description": "Projeto e construo sites e aplicações web rápidos, acessíveis e bem estruturados. Este portfólio reúne meus projetos, práticas e trabalhos mais recentes.",
+    "cta": "Ver projetos",
+    "stats": {
+      "projects": "projetos entregues",
+      "ownCode": "código próprio"
+    }
+  },
+  "projects": {
+    "title": "Projetos",
+    "searchPlaceholder": "Buscar por nome, descrição ou tecnologia...",
+    "searchAria": "Buscar projetos",
+    "loading": "Carregando projetos...",
+    "empty": "Nenhum projeto encontrado com essa busca.",
+    "apiError": "Não foi possível conectar à API. Mostrando projetos locais.",
+    "view": "Ver projeto",
+    "viewLive": "Ver ao vivo",
+    "items": {
+      "asignacion-01": {
+        "title": "Atividade 01: Vanilla JS (Fase 1 e 2)",
+        "description": "Projeto completo que inclui UI, interações e acompanhamento de estado em vanilla JavaScript.",
+        "tags": ["JavaScript", "UI", "Fase 1", "Fase 2"]
+      },
+      "asignacion-02": {
+        "title": "Atividade 02: JS Modular (Refatoração)",
+        "description": "Versão refatorada com módulos, melhor estrutura e uma experiência de usuário mais limpa.",
+        "tags": ["JS Modular", "Refatoração", "Arquitetura"]
+      },
+      "lunashop": {
+        "title": "LunaShop: Loja de Artigos",
+        "description": "Loja online para venda de artigos com catálogo, carrinho de compras e checkout.",
+        "tags": ["E-commerce", "UI", "React"]
+      },
+      "auditoria-caos": {
+        "title": "Auditoria e Engenharia do Caos",
+        "description": "Prática de auditoria e aplicação de engenharia do caos para avaliar a resiliência de sistemas.",
+        "tags": ["Auditoria", "DevOps", "Resiliência"]
+      },
+      "consola-programador": {
+        "title": "Console do Desenvolvedor",
+        "description": "Ferramenta web para avaliar e diagnosticar sites, semelhante às DevTools do navegador.",
+        "tags": ["Ferramentas", "DevTools", "JavaScript"]
+      },
+      "mecanica-dental": {
+        "title": "Site de Mecânica Dentária",
+        "description": "Site para laboratório de mecânica dentária com catálogo de serviços, procedimentos e contato.",
+        "tags": ["Dental", "Landing Page", "UI"]
+      },
+      "mas-proyectos": {
+        "title": "Mais projetos",
+        "description": "Explore mais trabalhos, melhorias e projetos em desenvolvimento em breve.",
+        "tags": ["Portfólio", "Em breve"]
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Vamos conversar",
+    "title": "Você tem um projeto em mente?",
+    "description": "Estou disponível para conversar sobre projetos, colaborações e novas oportunidades. Conte-me o que você tem em mente.",
+    "emailLabel": "E-mail direto",
+    "copy": "Copiar",
+    "copied": "Copiado!",
+    "copyAria": "Copiar e-mail",
+    "copiedAria": "E-mail copiado",
+    "copyError": "Não foi possível copiar. Você pode selecionar o e-mail ou abrir o link.",
+    "copySuccess": "E-mail copiado para a área de transferência.",
+    "form": {
+      "eyebrow": "Formulário de contato",
+      "title": "Conte-me sobre sua ideia",
+      "description": "Preencha seus dados e entrarei em contato em breve.",
+      "name": "Nome",
+      "namePlaceholder": "Seu nome",
+      "email": "E-mail",
+      "emailPlaceholder": "seu@email.com",
+      "subject": "Assunto / Motivo do contato",
+      "subjectPlaceholder": "Selecione um motivo",
+      "message": "Mensagem",
+      "messagePlaceholder": "Como posso ajudar?",
+      "submitting": "Enviando...",
+      "submit": "Enviar mensagem",
+      "success": "Obrigado pela sua mensagem! Responderei em menos de 24-48 horas.",
+      "autoresponderWarning": "Sua mensagem chegou corretamente, mas não foi possível enviar o e-mail de confirmação. Você não precisa enviá-la novamente.",
+      "genericError": "Não foi possível enviar a mensagem. Verifique sua conexão e tente novamente."
+    },
+    "subjects": {
+      "job": "Oferta de emprego",
+      "freelance": "Projeto freelance",
+      "consultation": "Consulta",
+      "other": "Colaboração / Outro"
+    },
+    "errors": {
+      "name": "O nome é muito curto.",
+      "email": "Informe um e-mail válido.",
+      "subject": "Selecione o motivo do contato.",
+      "message": "A mensagem deve ter pelo menos 10 caracteres.",
+      "configuration": "O formulário não está disponível. Tente novamente mais tarde ou entre em contato pelas minhas redes.",
+      "rateLimit": "Você enviou várias mensagens recentemente. Aguarde um momento e tente novamente.",
+      "unavailable": "O serviço de contato está temporariamente indisponível. Tente novamente mais tarde.",
+      "delivery": "Não foi possível enviar a mensagem. Verifique sua conexão e tente novamente.",
+      "autoresponder": "A mensagem chegou, mas não foi possível enviar o e-mail de confirmação."
+    }
+  },
+  "footer": {
+    "navigation": "Navegação",
+    "socials": "Redes"
+  }
+}

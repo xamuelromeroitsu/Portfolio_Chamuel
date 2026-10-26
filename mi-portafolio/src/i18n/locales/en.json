@@ -1,0 +1,140 @@
+{
+  "meta": {
+    "title": "Xamuel Romero | Web and Mobile Software Developer",
+    "description": "Xamuel Romero's portfolio: projects, skills and contact. I build fast, accessible and well-structured websites and web applications."
+  },
+  "common": {
+    "skipToContent": "Skip to content"
+  },
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "contact": "Contact",
+    "homeAria": "Go to the home page",
+    "contactAria": "Go to the contact section",
+    "mainAria": "Main navigation",
+    "menuAria": "Navigation menu",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "noLinks": "No links",
+    "theme": "Theme",
+    "socials": "Social links",
+    "menuLabel": "Menu",
+    "closeLabel": "Close",
+    "language": "Language"
+  },
+  "theme": {
+    "light": "Light mode",
+    "dark": "Dark mode",
+    "activateLight": "Switch to light mode",
+    "activateDark": "Switch to dark mode"
+  },
+  "hero": {
+    "label": "Portfolio",
+    "role": "Web and Mobile Software Developer",
+    "description": "I design and build fast, accessible and well-structured websites and web applications. This portfolio brings together my latest projects, practice work and recent jobs.",
+    "cta": "View projects",
+    "stats": {
+      "projects": "projects delivered",
+      "ownCode": "original code"
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "searchPlaceholder": "Search by name, description or technology...",
+    "searchAria": "Search projects",
+    "loading": "Loading projects...",
+    "empty": "No projects were found for that search.",
+    "apiError": "Could not connect to the API. Showing local projects.",
+    "view": "View project",
+    "viewLive": "View live",
+    "items": {
+      "asignacion-01": {
+        "title": "Assignment 01: Vanilla JS (Phase 1 & 2)",
+        "description": "Complete project including UI, interactions and state tracking in vanilla JavaScript.",
+        "tags": ["JavaScript", "UI", "Phase 1", "Phase 2"]
+      },
+      "asignacion-02": {
+        "title": "Assignment 02: Modular JS (Refactor)",
+        "description": "Refactored version with modules, better structure and a cleaner user experience.",
+        "tags": ["Modular JS", "Refactoring", "Architecture"]
+      },
+      "lunashop": {
+        "title": "LunaShop: Art Store",
+        "description": "Online store for selling art with a catalog, shopping cart and checkout.",
+        "tags": ["E-commerce", "UI", "React"]
+      },
+      "auditoria-caos": {
+        "title": "Chaos Engineering and Audit",
+        "description": "Audit practice and application of chaos engineering to evaluate system resilience.",
+        "tags": ["Audit", "DevOps", "Resilience"]
+      },
+      "consola-programador": {
+        "title": "Developer Console",
+        "description": "Web tool to evaluate and diagnose websites, similar to browser DevTools.",
+        "tags": ["Tools", "DevTools", "JavaScript"]
+      },
+      "mecanica-dental": {
+        "title": "Dental Mechanics Website",
+        "description": "Website for a dental mechanics laboratory with a service catalog, procedures and contact information.",
+        "tags": ["Dental", "Landing Page", "UI"]
+      },
+      "mas-proyectos": {
+        "title": "More projects",
+        "description": "Explore more work, improvements and projects currently in development.",
+        "tags": ["Portfolio", "Coming soon"]
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Let's talk",
+    "title": "Have a project in mind?",
+    "description": "I'm available to talk about projects, collaborations and new opportunities. Tell me what you have in mind.",
+    "emailLabel": "Direct email",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "copyAria": "Copy email",
+    "copiedAria": "Email copied",
+    "copyError": "Could not copy. You can select the email or open the link.",
+    "copySuccess": "Email copied to clipboard.",
+    "form": {
+      "eyebrow": "Contact form",
+      "title": "Tell me about your idea",
+      "description": "Fill in your details and I'll get back to you soon.",
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "you@email.com",
+      "subject": "Subject / Reason for contact",
+      "subjectPlaceholder": "Select a reason",
+      "message": "Message",
+      "messagePlaceholder": "How can I help?",
+      "submitting": "Sending...",
+      "submit": "Send message",
+      "success": "Thank you for your message! I'll get back to you within 24-48 hours.",
+      "autoresponderWarning": "Your message arrived successfully, but the confirmation email could not be sent. You don't need to send it again.",
+      "genericError": "The message could not be sent. Check your connection and try again."
+    },
+    "subjects": {
+      "job": "Job offer",
+      "freelance": "Freelance project",
+      "consultation": "Consultation",
+      "other": "Collaboration / Other"
+    },
+    "errors": {
+      "name": "The name is too short.",
+      "email": "Enter a valid email.",
+      "subject": "Select the reason for contact.",
+      "message": "The message must be at least 10 characters long.",
+      "configuration": "The form is not available. Try again later or contact me through my social links.",
+      "rateLimit": "You have sent several messages recently. Wait a moment and try again.",
+      "unavailable": "The contact service is temporarily unavailable. Try again later.",
+      "delivery": "The message could not be sent. Check your connection and try again.",
+      "autoresponder": "The message arrived, but the confirmation email could not be sent."
+    }
+  },
+  "footer": {
+    "navigation": "Navigation",
+    "socials": "Social links"
+  }
+}
