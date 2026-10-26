@@ -1,17 +1,14 @@
 import { z } from 'zod';
+import { CONTACT_SUBJECTS } from './contactSubjects.js';
 
-// Este esquema vive en data porque define el contrato de entrada del formulario, separado de la UI.
+// Este esquema vive en data porque define el contrato de entrada del formulario.
+// Los mensajes son claves de traducción; `ContactForm` los resuelve con
+// `t(message)`. Las materias vienen de `CONTACT_SUBJECTS` para no duplicar códigos.
 export const contactSchema = z.object({
-  // Cambia estos límites y mensajes si decides permitir otros formatos o longitudes.
-  name: z.string().trim().min(2, 'El nombre es muy corto.'),
-  email: z.string().trim().email('Ingresa un correo válido.'),
-  subject: z.enum([
-    'Oferta laboral',
-    'Proyecto freelance',
-    'Consulta',
-    'Colaboración / Otro'
-  ], {
-    errorMap: () => ({ message: 'Selecciona el motivo de contacto.' })
+  name: z.string().trim().min(2, 'contact.errors.name'),
+  email: z.string().trim().email('contact.errors.email'),
+  subject: z.enum(CONTACT_SUBJECTS, {
+    errorMap: () => ({ message: 'contact.errors.subject' })
   }),
-  message: z.string().trim().min(10, 'El mensaje debe tener al menos 10 caracteres.')
+  message: z.string().trim().min(10, 'contact.errors.message')
 });

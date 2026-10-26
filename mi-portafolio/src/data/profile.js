@@ -1,14 +1,14 @@
-// Contenido del portafolio centralizado, separado de la lógica de presentación y envío.
+// Datos neutrales del portafolio. Los textos traducibles viven en src/i18n/locales.
+// `name`, `contactEmail`, `skills` y `social` no se traducen.
+// Los `id` de `stats` son constantes: cada uno debe existir como
+// `hero.stats.<id>` en los tres locales; el valor numérico se muestra tal cual.
 const profile = {
   name: 'Xamuel Romero',
-  role: 'Desarrollador de Software web y móvil',
   contactEmail: 'xamuelromero.itsu@gmail.com',
-  description:
-    'Diseño y construyo sitios y aplicaciones web rápidas, accesibles y bien estructuradas. Este portafolio reúne mis proyectos, prácticas y trabajos más recientes.',
   skills: ['JavaScript', 'React', 'Node.js', 'HTML5', 'CSS3', 'Git'],
   stats: [
-    { value: '6+', label: 'proyectos entregados' },
-    { value: '100%', label: 'código propio' }
+    { id: 'projects', value: '6+' },
+    { id: 'ownCode', value: '100%' }
   ],
   social: {
     github: 'https://github.com/xamuelromeroitsu',
