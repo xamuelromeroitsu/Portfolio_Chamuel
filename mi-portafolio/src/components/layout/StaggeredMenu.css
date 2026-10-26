@@ -1,0 +1,521 @@
+/* Menú escalonado adaptado a los tokens del portafolio.
+   La barra superior es transparente; solo el panel y las capas usan superficie. */
+
+.staggered-menu-wrapper {
+  --sm-accent: var(--color-primary);
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 40;
+  pointer-events: none;
+}
+
+.staggered-menu-wrapper.fixed-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 40;
+  overflow: hidden;
+}
+
+/* Barra transparente: solo contiene la isla de cristal con los accesos. */
+.staggered-menu-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1rem clamp(1rem, 4vw, 2.5rem);
+  background: transparent;
+  pointer-events: none;
+  z-index: 20;
+  visibility: visible;
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.25s ease,
+    visibility 0s linear 0s;
+  will-change: transform;
+}
+
+.staggered-menu-header.is-hidden {
+  transform: translateY(calc(-100% - 1.5rem));
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.25s ease,
+    visibility 0s linear 0.4s;
+}
+
+.staggered-menu-header.is-hidden > * {
+  pointer-events: none;
+}
+
+.staggered-menu-header > * {
+  pointer-events: auto;
+}
+
+/* Isla de cristal que mantiene legibles los controles sobre el lanyard y la página. */
+/* Superficie de cristal compartida por la barra móvil y el header inline. */
+.sm-bar,
+.sm-inline {
+  align-items: center;
+  border: 1px solid var(--color-border);
+  border: 1px solid color-mix(in srgb, var(--color-border) 75%, transparent);
+  border-radius: 999px;
+  background: var(--color-bg);
+  background: color-mix(in srgb, var(--color-bg) 68%, transparent);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.16);
+  pointer-events: auto;
+}
+
+.sm-bar {
+  display: inline-flex;
+  gap: clamp(0.85rem, 2.5vw, 1.6rem);
+  padding: 0.3rem 0.55rem 0.3rem 1rem;
+}
+
+/* Cuando la barra solo contiene el botón, la píldora se compacta y lo centra. */
+.sm-bar--solo {
+  padding: 0.3rem 0.55rem;
+}
+
+/* Header inline de desktop: enlaces y tema, sin numeración. */
+.sm-inline {
+  display: none;
+  gap: 1rem;
+  padding: 0.35rem 0.6rem 0.35rem 1rem;
+}
+
+.sm-inline-nav {
+  display: flex;
+  align-items: center;
+}
+
+.sm-inline-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.sm-inline-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.15rem;
+  color: var(--color-text);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.sm-inline-link:hover,
+.sm-inline-link:focus-visible {
+  color: var(--sm-accent);
+}
+
+.sm-inline-link:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.sm-inline-theme {
+  display: flex;
+  align-items: center;
+  padding-left: 0.9rem;
+  border-left: 1px solid var(--color-border);
+}
+
+.sm-inline-theme .theme-toggle {
+  background: var(--color-bg);
+}
+
+/* Enlace visible en la barra, fuera del panel. */
+.sm-bar-link {
+  padding: 0.35rem 0.25rem;
+  color: var(--color-text);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.sm-bar-link:hover {
+  color: var(--sm-accent);
+}
+
+.sm-bar-link:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.sm-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.35rem 0.25rem;
+  background: transparent;
+  border: none;
+  color: var(--color-text);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  overflow: visible;
+  cursor: pointer;
+}
+
+.sm-toggle:hover {
+  color: var(--sm-accent);
+}
+
+.sm-toggle:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+.sm-toggle-textWrap {
+  position: relative;
+  display: inline-block;
+  height: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.sm-toggle-textInner {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.sm-toggle-line {
+  display: block;
+  height: 1em;
+  line-height: 1;
+}
+
+/* Hamburguesa de tres líneas que se convierte en X. */
+.sm-icon {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 22px;
+  width: 22px;
+  height: 18px;
+}
+
+.sm-icon-line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s ease;
+}
+
+.sm-icon-line:nth-child(1) {
+  top: 0;
+}
+
+.sm-icon-line:nth-child(2) {
+  top: 8px;
+}
+
+.sm-icon-line:nth-child(3) {
+  bottom: 0;
+}
+
+.staggered-menu-wrapper[data-open] .sm-icon-line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.staggered-menu-wrapper[data-open] .sm-icon-line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0.4);
+}
+
+.staggered-menu-wrapper[data-open] .sm-icon-line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Capas que acompañan la entrada del panel. */
+.sm-prelayers {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: clamp(260px, 38vw, 420px);
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+}
+
+[data-position='left'] .sm-prelayers {
+  right: auto;
+  left: 0;
+}
+
+.sm-prelayer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  transform: translateX(0);
+  opacity: 0;
+}
+
+.sm-prelayer--1 {
+  background: var(--menu-layer-1);
+}
+
+.sm-prelayer--2 {
+  background: var(--menu-layer-2);
+}
+
+/* Panel de navegación. */
+.staggered-menu-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: clamp(260px, 38vw, 420px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 5.5rem clamp(1.25rem, 4vw, 2.5rem) 2rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--color-surface);
+  background: color-mix(in srgb, var(--color-surface) 94%, transparent);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-left: 1px solid var(--color-border);
+  color: var(--color-text);
+  z-index: 10;
+  pointer-events: auto;
+  opacity: 0;
+}
+
+[data-position='left'] .staggered-menu-panel {
+  right: auto;
+  left: 0;
+  border-left: none;
+  border-right: 1px solid var(--color-border);
+}
+
+.sm-panel-inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.sm-panel-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sm-panel-itemWrap {
+  position: relative;
+  overflow: hidden;
+  line-height: 1;
+}
+
+.sm-panel-item {
+  position: relative;
+  display: inline-block;
+  padding-right: 1.4em;
+  color: var(--color-text);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 9vw, 3.6rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.sm-panel-item:hover,
+.sm-panel-item:focus-visible {
+  color: var(--sm-accent);
+}
+
+.sm-panel-item:focus-visible {
+  outline: none;
+  color: var(--sm-accent);
+}
+
+/* La etiqueta es inline-block, así que la decoración debe aplicarse en ella. */
+.sm-panel-item:focus-visible .sm-panel-itemLabel {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+}
+
+.sm-panel-itemLabel {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  will-change: transform;
+}
+
+.sm-panel-list[data-numbering] {
+  counter-reset: smItem;
+}
+
+.sm-panel-list[data-numbering] .sm-panel-item::after {
+  counter-increment: smItem;
+  content: counter(smItem, decimal-leading-zero);
+  position: absolute;
+  top: 0.2em;
+  right: 2.6em;
+  color: var(--sm-accent);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  opacity: var(--sm-num-opacity, 0);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Fila del control de tema dentro del panel. */
+.sm-theme {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.sm-theme-label {
+  color: var(--color-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.sm-theme .theme-toggle {
+  background: var(--color-bg);
+}
+
+/* Redes. */
+.sm-socials {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding-top: 1.25rem;
+}
+
+.sm-socials-title {
+  margin: 0;
+  color: var(--sm-accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.sm-socials-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+}
+
+.sm-socials-link {
+  position: relative;
+  display: inline-block;
+  padding: 0.2rem 0;
+  color: var(--color-text);
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.sm-socials-link:hover {
+  color: var(--sm-accent);
+}
+
+.sm-socials-link:focus-visible {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+@media (min-width: 1025px) {
+  .staggered-menu-header {
+    justify-content: center;
+  }
+
+  .sm-inline {
+    display: inline-flex;
+  }
+
+  .sm-bar {
+    display: none;
+  }
+
+  .staggered-menu-panel,
+  .sm-prelayers {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .staggered-menu-panel,
+  .sm-prelayers {
+    width: 100%;
+  }
+
+  .staggered-menu-panel {
+    border-left: none;
+  }
+
+  .sm-panel-item {
+    font-size: clamp(2.6rem, 10vw, 4rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .staggered-menu-header,
+  .sm-icon-line,
+  .sm-panel-item,
+  .sm-bar-link,
+  .sm-inline-link,
+  .sm-toggle,
+  .sm-socials-link,
+  .sm-theme .theme-toggle,
+  .sm-theme .theme-toggle__icons svg,
+  .sm-inline-theme .theme-toggle,
+  .sm-inline-theme .theme-toggle__icons svg {
+    transition: none;
+  }
+}
