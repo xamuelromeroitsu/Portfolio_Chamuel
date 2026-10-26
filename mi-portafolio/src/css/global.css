@@ -17,6 +17,18 @@ body {
   line-height: 1.6;
 }
 
+/* Destino del enlace de salto: recibe foco sin dibujar un marco alrededor de todo el main. */
+#contenido:focus {
+  outline: none;
+}
+
+/* El header fijo no debe tapar el inicio de las secciones ancla. */
+#inicio,
+#proyectos,
+#contacto {
+  scroll-margin-top: clamp(4.5rem, 7vw, 6rem);
+}
+
 img {
   max-width: 100%;
   display: block;

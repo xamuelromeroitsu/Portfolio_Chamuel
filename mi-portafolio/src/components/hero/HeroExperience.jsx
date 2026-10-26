@@ -1,5 +1,4 @@
 // Este componente reúne los elementos del hero que comparten contexto visual y ajustes responsive.
-import Header from '../layout/Header.jsx';
 import Hero from './Hero.jsx';
 import Lanyard from './Lanyard.jsx';
 import useLanyardLayout from './useLanyardLayout.js';
@@ -33,7 +32,6 @@ export default function HeroExperience() {
           interactive
         />
       </div>
-      <Header />
       {/* Mantiene el hero en el mismo ancho y alineación que las otras secciones principales. */}
       <div className="site-main site-main--hero">
         <Hero />

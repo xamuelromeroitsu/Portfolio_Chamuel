@@ -25,6 +25,10 @@
   --color-on-accent: #042f2e;
   --color-ring: #06b6d4;
 
+  /* Capas que acompañan la entrada del panel de navegación. */
+  --menu-layer-1: #22d3ee;
+  --menu-layer-2: #06b6d4;
+
   /* Semánticos: se usan en mensajes del formulario y estados de validación. */
   --color-success: #059669;
   --color-success-soft: rgba(5, 150, 105, 0.1);
@@ -58,6 +62,10 @@
   --color-accent-soft: rgba(34, 211, 238, 0.16);
   --color-on-accent: #042f2e;
   --color-ring: #22d3ee;
+
+  /* En oscuro las capas se hunden en el fondo para no deslumbrar. */
+  --menu-layer-1: #0e7490;
+  --menu-layer-2: #164e63;
 
   --color-success: #34d399;
   --color-success-soft: rgba(52, 211, 153, 0.12);

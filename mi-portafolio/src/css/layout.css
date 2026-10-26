@@ -8,22 +8,16 @@
   /* El canvas se limita al encabezado/hero y queda como referencia para la capa superpuesta. */
   position: relative;
   isolation: isolate;
+  /* Reserva el espacio del botón fijo del menú; también conserva la altura que
+     antes ocupaba el header en el cálculo del lanyard. */
+  padding-top: clamp(4rem, 7vw, 5.5rem);
 }
 
-.site-header,
 .site-footer {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 1.5rem;
-}
-
-.site-header {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .lanyard-overlay {
@@ -302,27 +296,6 @@
 }
 
 @media (max-width: 760px) {
-  .site-header {
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
-
-  .site-header > strong {
-    order: 1;
-  }
-
-  /* El toggle mantiene un tamaño táctil cómodo; ya no necesita padding de texto. */
-  .site-header > .theme-toggle {
-    order: 2;
-  }
-
-  .site-nav {
-    order: 3;
-    width: 100%;
-    justify-content: space-between;
-    gap: 0.5rem;
-  }
-
   .site-main {
     padding: 1rem;
     gap: 1.25rem;
@@ -349,7 +322,6 @@
 }
 
 @media (max-width: 520px) {
-  .site-header,
   .site-footer {
     padding: 1rem;
   }
