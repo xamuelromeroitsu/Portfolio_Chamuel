@@ -2,6 +2,7 @@
 // tema y redes viven dentro del panel. Los enlaces respetan el idioma de la URL.
 import { useTranslation } from 'react-i18next';
 import StaggeredMenu from './StaggeredMenu.jsx';
+import LanguageSlingButton from './LanguageSlingButton.jsx';
 import { useTheme } from '../../hooks/useTheme';
 import profile from '../../data/profile';
 
@@ -25,6 +26,9 @@ export default function Header() {
       link: `/${lang}/#contacto`
     }
   ];
+
+  // El control de idioma se reutiliza en el header de escritorio y en el panel.
+  const languageControl = <LanguageSlingButton />;
 
   // El control se pasa al panel para que el cambio de tema viva dentro del menú.
   const themeControl = (
@@ -61,6 +65,8 @@ export default function Header() {
         socialItems={socialItems}
         displaySocials
         displayItemNumbering
+        languageControl={languageControl}
+        languageLabel={t('nav.language')}
         themeControl={themeControl}
         menuLabel={t('nav.menuLabel')}
         closeLabel={t('nav.closeLabel')}

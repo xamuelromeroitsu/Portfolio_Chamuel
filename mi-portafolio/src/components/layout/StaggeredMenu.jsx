@@ -24,11 +24,13 @@ export const StaggeredMenu = ({
   closeMenuLabel = 'Cerrar menú',
   noLinksLabel = 'Sin enlaces',
   themeLabel = 'Tema',
+  languageLabel = 'Idioma',
   socialsLabel = 'Redes',
   isFixed = false,
   desktopInline = false,
   closeOnClickAway = true,
   themeControl = null,
+  languageControl = null,
   onMenuOpen,
   onMenuClose
 }) => {
@@ -48,8 +50,11 @@ export const StaggeredMenu = ({
   const scrollLockRef = useRef(null);
 
   useEffect(() => {
-    if (!openRef.current) setTextLines([menuLabel]);
-  }, [menuLabel]);
+    const label = openRef.current ? closeLabel : menuLabel;
+    textCycleAnimRef.current?.kill();
+    setTextLines([label]);
+    if (textInnerRef.current) gsap.set(textInnerRef.current, { yPercent: 0 });
+  }, [closeLabel, menuLabel]);
 
   // Posiciona el panel y las capas fuera de pantalla al montar. Solo depende de
   // position para que un cambio de tema con el panel abierto no lo reinicie.
@@ -122,6 +127,7 @@ export const StaggeredMenu = ({
     const socialTitle = panel.querySelector('.sm-socials-title');
     const socialLinks = Array.from(panel.querySelectorAll('.sm-socials-link'));
     const themeEl = panel.querySelector('.sm-theme');
+    const languageEl = panel.querySelector('.sm-language');
 
     const offscreen = position === 'left' ? -100 : 100;
 
@@ -130,6 +136,7 @@ export const StaggeredMenu = ({
     if (socialTitle) gsap.set(socialTitle, { opacity: 0 });
     if (socialLinks.length) gsap.set(socialLinks, { y: 25, opacity: 0 });
     if (themeEl) gsap.set(themeEl, { opacity: 0, y: 10 });
+    if (languageEl) gsap.set(languageEl, { opacity: 0, y: 10 });
 
     const tl = gsap.timeline({ paused: true });
 
@@ -183,8 +190,12 @@ export const StaggeredMenu = ({
 
     const extrasStart = panelInsertTime + panelDuration * 0.4;
 
+    if (languageEl) {
+      tl.to(languageEl, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, extrasStart);
+    }
+
     if (themeEl) {
-      tl.to(themeEl, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, extrasStart);
+      tl.to(themeEl, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, extrasStart + 0.06);
     }
 
     if (socialTitle) {
@@ -222,6 +233,7 @@ export const StaggeredMenu = ({
     const socialTitle = panel.querySelector('.sm-socials-title');
     const socialLinks = panel.querySelectorAll('.sm-socials-link');
     const themeEl = panel.querySelector('.sm-theme');
+    const languageEl = panel.querySelector('.sm-language');
 
     gsap.set([panel, ...layers], { xPercent: 0, opacity: 1 });
     gsap.set(itemEls, { yPercent: 0, rotate: 0 });
@@ -229,6 +241,7 @@ export const StaggeredMenu = ({
     if (socialTitle) gsap.set(socialTitle, { opacity: 1 });
     gsap.set(socialLinks, { y: 0, opacity: 1 });
     if (themeEl) gsap.set(themeEl, { opacity: 1, y: 0 });
+    if (languageEl) gsap.set(languageEl, { opacity: 1, y: 0 });
   }, []);
 
   const playOpen = useCallback(() => {
@@ -473,6 +486,7 @@ export const StaggeredMenu = ({
                 ))}
               </ul>
             </nav>
+            {languageControl && <div className="sm-inline-language">{languageControl}</div>}
             {themeControl && <div className="sm-inline-theme">{themeControl}</div>}
           </div>
         )}
@@ -554,10 +568,20 @@ export const StaggeredMenu = ({
             </ul>
           </nav>
 
-          {themeControl && (
-            <div className="sm-theme">
-              <span className="sm-theme-label">{themeLabel}</span>
-              {themeControl}
+          {(languageControl || themeControl) && (
+            <div className="sm-panel-controls">
+              {languageControl && (
+                <div className="sm-language">
+                  <span className="sm-language-label">{languageLabel}</span>
+                  {languageControl}
+                </div>
+              )}
+              {themeControl && (
+                <div className="sm-theme">
+                  <span className="sm-theme-label">{themeLabel}</span>
+                  {themeControl}
+                </div>
+              )}
             </div>
           )}
 

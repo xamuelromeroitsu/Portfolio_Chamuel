@@ -21,7 +21,9 @@
     "socials": "Redes",
     "menuLabel": "Menu",
     "closeLabel": "Fechar",
-    "language": "Idioma"
+    "language": "Idioma",
+    "languageSwitch": "Idioma atual: {{current}}. Mudar para {{next}}.",
+    "languageHint": "Pressione para mudar de idioma ou arraste e solte."
   },
   "theme": {
     "light": "Modo claro",

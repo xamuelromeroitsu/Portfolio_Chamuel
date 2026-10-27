@@ -1,0 +1,12 @@
+/* El botón se integra en la isla de cristal del header y en el panel móvil. */
+.language-sling {
+  flex: 0 0 auto;
+}
+
+.language-sling__code {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}

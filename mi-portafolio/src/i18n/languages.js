@@ -54,3 +54,22 @@ export const getLanguageFromPath = (pathname = '') => {
 // rellenar `lang`, `og:locale` y `hreflang` de cada shell.
 export const getLanguage = (code) =>
   LANGUAGES.find((language) => language.code === code) ?? LANGUAGES[0];
+
+export const getNextLanguage = (code) => {
+  const index = LANGUAGE_CODES.indexOf(code);
+  const nextIndex = index === -1 ? 0 : (index + 1) % LANGUAGE_CODES.length;
+
+  return LANGUAGES[nextIndex];
+};
+
+export const replaceLanguageInPath = (pathname = '/', code = DEFAULT_LANGUAGE) => {
+  const segments = pathname.split('/').filter(Boolean);
+
+  if (isSupportedLanguage(segments[0])) {
+    segments[0] = code;
+  } else {
+    segments.unshift(code);
+  }
+
+  return `/${segments.join('/')}/`;
+};

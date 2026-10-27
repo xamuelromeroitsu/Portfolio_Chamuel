@@ -21,7 +21,9 @@
     "socials": "Social links",
     "menuLabel": "Menu",
     "closeLabel": "Close",
-    "language": "Language"
+    "language": "Language",
+    "languageSwitch": "Current language: {{current}}. Switch to {{next}}.",
+    "languageHint": "Press to change language, or drag away and release."
   },
   "theme": {
     "light": "Light mode",
