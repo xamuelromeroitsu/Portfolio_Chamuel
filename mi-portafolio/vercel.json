@@ -1,5 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "redirects": [
     {
       "source": "/",
@@ -7,48 +9,29 @@
       "statusCode": 301
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/es",
-      "dest": "/es/index.html"
+      "source": "/es/:path*",
+      "destination": "/es/index.html"
     },
     {
-      "src": "/es/(.*)",
-      "dest": "/es/index.html"
+      "source": "/en/:path*",
+      "destination": "/en/index.html"
     },
     {
-      "src": "/en",
-      "dest": "/en/index.html"
-    },
-    {
-      "src": "/en/(.*)",
-      "dest": "/en/index.html"
-    },
-    {
-      "src": "/pt",
-      "dest": "/pt/index.html"
-    },
-    {
-      "src": "/pt/(.*)",
-      "dest": "/pt/index.html"
-    },
-    {
-      "src": "/asignacion-01",
-      "dest": "/asignacion-01/index.html"
-    },
-    {
-      "src": "/asignacion-02",
-      "dest": "/asignacion-02/index.html"
-    },
-    {
-      "src": "/api/(.*)",
-      "dest": "/server/index.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/pt/:path*",
+      "destination": "/pt/index.html"
     }
   ],
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist"
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
 }
