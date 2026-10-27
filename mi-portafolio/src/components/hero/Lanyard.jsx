@@ -14,16 +14,16 @@ const THICKNESS = 0.018;
 const BEVEL = 0.007;
 const JOINTS = 4;
 const NODE_WEIGHT = 1 / 0.05;
-const MAX_STEP = 1 / 960;
-const ITERATIONS = 2;
-const SAMPLES = 72;
+const MAX_STEP = 1 / 480;
+const ITERATIONS = 1;
+const SAMPLES = 48;
 const FOV = 24;
 const STRAP_WIDTH = 0.36;
 const RING_RADIUS = 0.095;
 const RING_TUBE = 0.0135;
 const EYELET_RADIUS = 0.036;
 const CLAMP_BODY = 0.15;
-const FACE_WIDTH = 1024;
+const FACE_WIDTH = 640;
 
 const FINISHES = {
   glossy: { roughness: 0.42, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.06, foil: 0, anisotropy: 0 },
@@ -766,9 +766,13 @@ const Lanyard = ({
     const container = containerRef.current;
     if (!container) return undefined;
 
+    const lowPower =
+      (window.matchMedia?.('(max-width: 768px)')?.matches ?? false) ||
+      (navigator.hardwareConcurrency ?? 8) <= 4;
+
     let renderer;
     try {
-      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+      renderer = new THREE.WebGLRenderer({ antialias: !lowPower, alpha: true, powerPreference: 'high-performance' });
     } catch (error) {
       console.error('No se pudo iniciar WebGL para la tarjeta del lanyard.', error);
       setWebGLUnavailable(true);
@@ -1266,7 +1270,7 @@ const Lanyard = ({
     const resize = () => {
       view.width = Math.max(1, container.clientWidth);
       view.height = Math.max(1, container.clientHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, lowPower ? 1.25 : 1.5));
       renderer.setSize(view.width, view.height, false);
       apply();
       render();
