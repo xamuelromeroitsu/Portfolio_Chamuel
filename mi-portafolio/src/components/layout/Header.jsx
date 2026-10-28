@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import StaggeredMenu from './StaggeredMenu.jsx';
 import LanguageSlingButton from './LanguageSlingButton.jsx';
 import { useTheme } from '../../hooks/useTheme';
+import { useHomeLink } from '../../hooks/useHomeLink.js';
 import profile from '../../data/profile';
 
 const socialItems = [
@@ -17,9 +18,15 @@ export default function Header() {
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === 'dark';
   const lang = i18n.resolvedLanguage || 'es';
+  const { handleClick: handleHomeClick } = useHomeLink();
 
   const menuItems = [
-    { label: t('nav.home'), ariaLabel: t('nav.homeAria'), link: `/${lang}/` },
+    {
+      id: 'home',
+      label: t('nav.home'),
+      ariaLabel: t('nav.homeAria'),
+      link: `/${lang}/`
+    },
     {
       label: t('nav.contact'),
       ariaLabel: t('nav.contactAria'),
@@ -77,6 +84,9 @@ export default function Header() {
         noLinksLabel={t('nav.noLinks')}
         themeLabel={t('nav.theme')}
         socialsLabel={t('nav.socials')}
+        onItemClick={(event, item) => {
+          if (item.id === 'home') handleHomeClick(event);
+        }}
       />
     </>
   );

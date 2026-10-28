@@ -32,7 +32,8 @@ export const StaggeredMenu = ({
   themeControl = null,
   languageControl = null,
   onMenuOpen,
-  onMenuClose
+  onMenuClose,
+  onItemClick
 }) => {
   const [open, setOpen] = useState(false);
   const openRef = useRef(false);
@@ -479,6 +480,10 @@ export const StaggeredMenu = ({
                       className="sm-inline-link"
                       href={item.link}
                       aria-label={item.ariaLabel}
+                      onClick={(event) => {
+                        onItemClick?.(event, item);
+                        closeMenu(true);
+                      }}
                     >
                       {item.label}
                     </a>
@@ -552,7 +557,10 @@ export const StaggeredMenu = ({
                       href={item.link}
                       aria-label={item.ariaLabel}
                       data-index={index + 1}
-                      onClick={() => closeMenu(true)}
+                      onClick={(event) => {
+                        onItemClick?.(event, item);
+                        closeMenu(true);
+                      }}
                     >
                       <span className="sm-panel-itemLabel">{item.label}</span>
                     </a>
