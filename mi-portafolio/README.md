@@ -1,6 +1,6 @@
 # Mi portafolio
 
-Sitio personal construido con React, Vite y un servidor Express para proyectos. El contacto se envía directamente mediante EmailJS. La interfaz está disponible en español, inglés y portugués mediante URLs `/es/`, `/en/` y `/pt/`.
+Sitio personal construido con React y Vite. Los proyectos se sirven desde un catálogo local y el contacto se envía directamente mediante EmailJS. La interfaz está disponible en español, inglés y portugués mediante URLs `/es/`, `/en/` y `/pt/`.
 
 ## Ejecutar el proyecto
 
@@ -8,24 +8,16 @@ Desde esta carpeta:
 
 ```bash
 npm install
-npm run dev:all
-```
-
-`npm run dev:all` inicia Vite y Express juntos. Si prefieres iniciarlos por separado, usa dos terminales:
-
-```bash
 npm run dev
-npm run dev:server
 ```
 
-Vite muestra la dirección del sitio (por defecto `http://localhost:5173`). El servidor API usa el puerto `3001`.
+Vite muestra la dirección del sitio (por defecto `http://localhost:5173`).
 
 Otros comandos disponibles:
 
 - `npm run build`: genera la versión de producción en `dist/` y ejecuta `postbuild`, que crea las shells de idioma.
 - `npm test`: ejecuta pruebas de locales, esquema de contacto y servicio EmailJS simulado; no envía correos reales.
 - `npm run preview`: sirve localmente el build para revisarlo.
-- `npm start`: inicia Express para servir la API y, si existe, el build de `dist/`.
 
 Para generar `canonical`, `hreflang`, `sitemap.xml` y `robots.txt`, define `SITE_URL` antes del build:
 
@@ -74,7 +66,7 @@ docs/
 └── i18n.md                     # Documentación de internacionalización
 ```
 
-El servidor está en `server/index.js` y solo sirve el catálogo de proyectos y el build de producción. `vite.config.js` configura el servidor de desarrollo y el proxy `/api`. El contacto tiene un único flujo oficial: EmailJS desde el navegador; no se guardan mensajes en archivos locales.
+El catálogo de proyectos vive en `src/data/projects.js` y se traduce con los locales de `src/i18n/locales/`. El contacto tiene un único flujo oficial: EmailJS desde el navegador; no se guardan mensajes en archivos locales.
 
 ## Idiomas
 
@@ -95,14 +87,14 @@ Los códigos son constantes estables: no se traducen y se usan como claves en lo
 | `DEFAULT_LANGUAGE` (`es`) | `src/i18n/languages.js` | fallback de i18next y redirección de `/` |
 | `LANGUAGES` / `LANGUAGE_CODES` | `src/i18n/languages.js` | `src/i18n/index.js`, `LanguageRoute`, enlaces con prefijo, tests y `scripts/build-language-shells.mjs` |
 | `CONTACT_SUBJECTS` | `src/data/contactSubjects.js` | `contactSchema` (enum), `ContactForm` (select) y `contactService` (`subjectCode`) |
-| `project.id` | `src/data/projects.js` | `projects.items.<id>` en los tres locales, `key` de React y API neutral |
+| `project.id` | `src/data/projects.js` | `projects.items.<id>` en los tres locales y `key` de React |
 | `stat.id` | `src/data/profile.js` | `hero.stats.<id>` en los tres locales |
 | `ContactServiceError.code` | `src/services/contactService.js` | `contact.errors.<code>` en los tres locales |
 
 Reglas:
 
 - Un código nuevo se añade primero en su archivo de constantes y después en `es.json`, `en.json` y `pt.json`; los tests de locales fallan si falta una clave.
-- Los textos visibles nunca viven en `src/data/` ni en `server/`; solo en `src/i18n/locales/`.
+- Los textos visibles nunca viven en `src/data/`; solo en `src/i18n/locales/`.
 - Los IDs de ancla (`inicio`, `proyectos`, `contacto`, `contenido`) tampoco se traducen.
 - `scripts/build-language-shells.mjs` importa `LANGUAGE_CODES`; no dupliques la lista de idiomas.
 - Los tokens CSS (`--color-*`, `--radius`, `--shadow`, etc.) viven solo en `src/css/variables.css` y se consumen con `var(--token)`; no escribas colores sueltos en los componentes.

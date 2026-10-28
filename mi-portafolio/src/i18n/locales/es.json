@@ -47,9 +47,7 @@
     "title": "Proyectos",
     "searchPlaceholder": "Buscar por nombre, descripción o tecnología...",
     "searchAria": "Buscar proyectos",
-    "loading": "Cargando proyectos...",
     "empty": "No se encontraron proyectos con esa búsqueda.",
-    "apiError": "No se pudo conectar con la API. Mostrando proyectos locales.",
     "view": "Ver proyecto",
     "viewLive": "Ver en vivo",
     "items": {

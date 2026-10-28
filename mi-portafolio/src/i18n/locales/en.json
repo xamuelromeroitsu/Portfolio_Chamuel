@@ -47,9 +47,7 @@
     "title": "Projects",
     "searchPlaceholder": "Search by name, description or technology...",
     "searchAria": "Search projects",
-    "loading": "Loading projects...",
     "empty": "No projects were found for that search.",
-    "apiError": "Could not connect to the API. Showing local projects.",
     "view": "View project",
     "viewLive": "View live",
     "items": {

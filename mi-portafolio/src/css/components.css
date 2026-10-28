@@ -39,11 +39,6 @@ label {
   min-height: 1.5rem;
 }
 
-/* Projects.jsx usa esta variante cuando la API falla; sin ella el aviso se vería verde. */
-.form-message--error {
-  color: var(--color-danger);
-}
-
 /* Tarjeta de proyecto. Se define una sola vez aquí para evitar que las reglas
    duplicadas de layout.css se pisen al cambiar de tema. */
 .project-card {

@@ -1,40 +1,14 @@
-// useEffect carga datos remotos, useState guarda búsqueda/estados y useMemo evita filtrar sin cambios.
-import { useEffect, useMemo, useState } from 'react';
+// useState guarda la búsqueda y useMemo evita filtrar proyectos sin cambios.
+import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import ProjectCard from './ProjectCard.jsx';
-// Los datos locales permiten mostrar el portafolio aunque la API no esté disponible.
+// El catálogo local es la única fuente de proyectos.
 import localProjects from '../../data/projects';
 
 export default function Projects() {
   const { t, i18n } = useTranslation();
-  const [projects, setProjects] = useState(localProjects);
+  const projects = localProjects;
   const [query, setQuery] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [apiError, setApiError] = useState(false);
-
-  useEffect(() => {
-    let active = true;
-
-    // En desarrollo Vite reenvía /api al servidor definido en vite.config.js.
-    fetch('/api/projects')
-      .then((response) => {
-        if (!response.ok) throw new Error('Invalid response');
-        return response.json();
-      })
-      .then((data) => {
-        if (active && Array.isArray(data)) setProjects(data);
-      })
-      .catch(() => {
-        if (active) setApiError(true);
-      })
-      .finally(() => {
-        if (active) setLoading(false);
-      });
-
-    return () => {
-      active = false;
-    };
-  }, []);
 
   const localizedProjects = useMemo(
     () =>
@@ -74,7 +48,7 @@ export default function Projects() {
   }, [localizedProjects, query]);
 
   return (
-    <section className="projects" id="proyectos" aria-busy={loading}>
+    <section className="projects" id="proyectos">
       <div className="projects-header">
         <h2>{t('projects.title')}</h2>
         <input
@@ -87,23 +61,15 @@ export default function Projects() {
         />
       </div>
 
-      {loading ? (
-        <p className="no-results">{t('projects.loading')}</p>
-      ) : (
-        <div className="project-grid">
-          {filtered.length === 0 ? (
-            <p className="no-results">{t('projects.empty')}</p>
-          ) : (
-            filtered.map((project) => (
-              <ProjectCard key={project.id ?? project.link} project={project} />
-            ))
-          )}
-        </div>
-      )}
-
-      {apiError && (
-        <p className="form-message form-message--error">{t('projects.apiError')}</p>
-      )}
+      <div className="project-grid">
+        {filtered.length === 0 ? (
+          <p className="no-results">{t('projects.empty')}</p>
+        ) : (
+          filtered.map((project) => (
+            <ProjectCard key={project.id ?? project.link} project={project} />
+          ))
+        )}
+      </div>
     </section>
   );
 }

@@ -1,8 +1,7 @@
 // Catálogo neutral de proyectos. Los títulos, descripciones y tags viven en los locales.
 // Los enlaces locales son absolutos para que funcionen bajo /es/, /en/ y /pt/.
-// `id` es la constante que une este catálogo con la copia: debe existir como
-// `projects.items.<id>` en los tres locales. La API (`server/index.js`) solo
-// expone `id`, `link`, `external` y `stack`; el resto se resuelve en el cliente.
+// `id` une este catálogo con la copia y debe existir como `projects.items.<id>`
+// en los tres locales.
 const projects = [
   {
     id: 'asignacion-01',
