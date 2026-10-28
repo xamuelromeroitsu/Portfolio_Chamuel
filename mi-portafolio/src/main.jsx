@@ -1,13 +1,16 @@
 // React monta la aplicación en el elemento #root definido en index.html.
 // La URL es la fuente del idioma: `/` y las rutas desconocidas caen en `/es/`.
-// `:lang` se valida en `LanguageRoute`; no añadas rutas de idioma a mano aquí.
+// `:lang` se valida en `LanguageRoute`; las rutas de página viven debajo de `:lang`.
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './i18n';
-import App from './App.jsx';
+import SiteLayout from './components/layout/SiteLayout.jsx';
+import HomePage from './pages/HomePage.jsx';
+import ProjectsPage from './pages/ProjectsPage.jsx';
+import AboutPage from './pages/AboutPage.jsx';
+import ContactPage from './pages/ContactPage.jsx';
 import LanguageRoute from './components/routing/LanguageRoute.jsx';
-import ScrollToHash from './components/routing/ScrollToHash.jsx';
 // Las hojas se cargan en orden: tokens, reglas globales, distribución y componentes.
 import './css/variables.css';
 import './css/global.css';
@@ -25,11 +28,16 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           path="/:lang"
           element={
             <LanguageRoute>
-              <ScrollToHash />
-              <App />
+              <SiteLayout />
             </LanguageRoute>
           }
-        />
+        >
+          <Route index element={<HomePage />} />
+          <Route path="projects" element={<ProjectsPage />} />
+          <Route path="about" element={<AboutPage />} />
+          <Route path="contact" element={<ContactPage />} />
+          <Route path="*" element={<Navigate to="./" replace />} />
+        </Route>
         <Route path="*" element={<Navigate to="/es/" replace />} />
       </Routes>
     </BrowserRouter>

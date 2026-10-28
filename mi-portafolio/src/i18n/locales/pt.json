@@ -23,7 +23,9 @@
     "closeLabel": "Fechar",
     "language": "Idioma",
     "languageSwitch": "Idioma atual: {{current}}. Mudar para {{next}}.",
-    "languageHint": "Pressione para mudar de idioma ou arraste e solte."
+    "languageHint": "Pressione para mudar de idioma ou arraste e solte.",
+    "about": "Sobre",
+    "aboutAria": "Ir para Sobre"
   },
   "theme": {
     "light": "Modo claro",

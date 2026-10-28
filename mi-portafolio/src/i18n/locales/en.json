@@ -23,7 +23,9 @@
     "closeLabel": "Close",
     "language": "Language",
     "languageSwitch": "Current language: {{current}}. Switch to {{next}}.",
-    "languageHint": "Press to change language, or drag away and release."
+    "languageHint": "Press to change language, or drag away and release.",
+    "about": "About",
+    "aboutAria": "Go to About"
   },
   "theme": {
     "light": "Light mode",

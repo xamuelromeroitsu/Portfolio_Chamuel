@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 export default function ScrollToHash() {
-  const { hash } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
     if (!hash) return undefined;
@@ -18,7 +18,7 @@ export default function ScrollToHash() {
     });
 
     return () => window.cancelAnimationFrame(frame);
-  }, [hash]);
+  }, [pathname, hash]);
 
   return null;
 }

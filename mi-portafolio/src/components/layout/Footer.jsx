@@ -1,4 +1,5 @@
 // El pie reutiliza la identidad y las redes definidas en data/profile.js.
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useHomeLink } from '../../hooks/useHomeLink.js';
 import profile from '../../data/profile';
@@ -11,8 +12,9 @@ export default function Footer() {
 
   const navLinks = [
     { label: t('nav.home'), href: `/${lang}/#inicio`, home: true },
-    { label: t('nav.projects'), href: `/${lang}/#proyectos` },
-    { label: t('nav.contact'), href: `/${lang}/#contacto` }
+    { label: t('nav.projects'), href: `/${lang}/projects/` },
+    { label: t('nav.about'), href: `/${lang}/about/` },
+    { label: t('nav.contact'), href: `/${lang}/contact/` }
   ];
 
   return (
@@ -27,12 +29,16 @@ export default function Footer() {
           <ul>
             {navLinks.map((link) => (
               <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={link.home ? handleHomeClick : undefined}
-                >
-                  {link.label}
-                </a>
+                {link.label === t('nav.contact') ? (
+                  <Link to={link.href}>{link.label}</Link>
+                ) : (
+                  <a
+                    href={link.href}
+                    onClick={link.home ? handleHomeClick : undefined}
+                  >
+                    {link.label}
+                  </a>
+                )}
               </li>
             ))}
           </ul>

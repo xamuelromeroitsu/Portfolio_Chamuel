@@ -23,7 +23,9 @@
     "closeLabel": "Cerrar",
     "language": "Idioma",
     "languageSwitch": "Idioma actual: {{current}}. Cambiar a {{next}}.",
-    "languageHint": "Pulsa para cambiar de idioma o arrastra y suelta."
+    "languageHint": "Pulsa para cambiar de idioma o arrastra y suelta.",
+    "about": "Sobre mí",
+    "aboutAria": "Ir a Sobre mí"
   },
   "theme": {
     "light": "Modo claro",
