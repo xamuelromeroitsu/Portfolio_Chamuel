@@ -8,6 +8,7 @@ import './i18n';
 import SiteLayout from './components/layout/SiteLayout.jsx';
 import HomePage from './pages/HomePage.jsx';
 import AboutPage from './pages/AboutPage.jsx';
+import ProjectsPage from './pages/ProjectsPage.jsx';
 import LanguageRoute from './components/routing/LanguageRoute.jsx';
 // Las hojas se cargan en orden: tokens, reglas globales, distribución y componentes.
 import './css/variables.css';
@@ -31,6 +32,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           }
         >
           <Route index element={<HomePage />} />
+          <Route path="projects" element={<ProjectsPage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="contact" element={<Navigate to="../#contacto" replace />} />
           <Route path="*" element={<Navigate to="./" replace />} />

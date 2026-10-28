@@ -58,6 +58,13 @@
   background-image: none;
 }
 
+.projects-page {
+  width: 100%;
+  min-height: calc(100vh - 8rem);
+  background-color: var(--color-bg);
+  background-image: none;
+}
+
 /* Los tres contenedores comparten superficie y sombra. El borde es necesario en
    el tema oscuro: separa la tarjeta (#171717) del fondo (#0a0a0a). */
 .hero,

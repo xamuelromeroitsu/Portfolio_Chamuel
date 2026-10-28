@@ -30,6 +30,11 @@ export default function Header() {
       link: `/${lang}/`
     },
     {
+      label: t('nav.projects'),
+      ariaLabel: t('nav.projectsAria'),
+      link: `/${lang}/projects/`
+    },
+    {
       label: t('nav.about'),
       ariaLabel: t('nav.aboutAria'),
       link: `/${lang}/about/`

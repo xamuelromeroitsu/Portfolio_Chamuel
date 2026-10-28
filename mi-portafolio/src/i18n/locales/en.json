@@ -8,8 +8,10 @@
   },
   "nav": {
     "home": "Home",
+    "projects": "Projects",
     "contact": "Contact",
     "homeAria": "Go to the home page",
+    "projectsAria": "Go to Projects",
     "contactAria": "Go to the contact section",
     "mainAria": "Main navigation",
     "menuAria": "Navigation menu",
