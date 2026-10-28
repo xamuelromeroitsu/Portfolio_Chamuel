@@ -8,7 +8,6 @@
   },
   "nav": {
     "home": "Home",
-    "projects": "Projects",
     "contact": "Contact",
     "homeAria": "Go to the home page",
     "contactAria": "Go to the contact section",
@@ -37,7 +36,6 @@
     "label": "Portfolio",
     "role": "Web and Mobile Software Developer",
     "description": "I design and build fast, accessible and well-structured websites and web applications. This portfolio brings together my latest projects, practice work and recent jobs.",
-    "cta": "View projects",
     "stats": {
       "projects": "projects delivered",
       "ownCode": "original code"

@@ -3,9 +3,8 @@ import { useTranslation } from 'react-i18next';
 import profile from '../../data/profile';
 
 export default function Hero() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { name, skills, stats } = profile;
-  const lang = i18n.resolvedLanguage || 'es';
 
   return (
     <section className="hero" id="inicio">
@@ -18,11 +17,6 @@ export default function Hero() {
           {t('hero.role')}
         </h1>
         <p className="hero-description">{t('hero.description')}</p>
-        <div className="hero-actions">
-          <a className="button" href={`/${lang}/#proyectos`}>
-            {t('hero.cta')}
-          </a>
-        </div>
         <div className="hero-skills">
           {skills.map((skill) => (
             <span key={skill}>{skill}</span>

@@ -8,7 +8,6 @@
   },
   "nav": {
     "home": "Início",
-    "projects": "Projetos",
     "contact": "Contato",
     "homeAria": "Ir para o início",
     "contactAria": "Ir para a seção de contato",
@@ -37,7 +36,6 @@
     "label": "Portfólio",
     "role": "Desenvolvedor de Software web e mobile",
     "description": "Projeto e construo sites e aplicações web rápidos, acessíveis e bem estruturados. Este portfólio reúne meus projetos, práticas e trabalhos mais recentes.",
-    "cta": "Ver projetos",
     "stats": {
       "projects": "projetos entregues",
       "ownCode": "código próprio"

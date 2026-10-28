@@ -1,11 +1,11 @@
 // Header transparente con menú escalonado. Sin logo ni nombre: navegación,
 // tema y redes viven dentro del panel. Los enlaces respetan el idioma de la URL.
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 import StaggeredMenu from './StaggeredMenu.jsx';
 import LanguageSlingButton from './LanguageSlingButton.jsx';
 import { useTheme } from '../../hooks/useTheme';
 import { useHomeLink } from '../../hooks/useHomeLink.js';
+import { useContactLink } from '../../hooks/useContactLink.js';
 import profile from '../../data/profile';
 
 const socialItems = [
@@ -20,7 +20,7 @@ export default function Header() {
   const isDark = theme === 'dark';
   const lang = i18n.resolvedLanguage || 'es';
   const { handleClick: handleHomeClick } = useHomeLink();
-  const navigate = useNavigate();
+  const { href: contactHref, handleClick: handleContactClick } = useContactLink(lang);
 
   const menuItems = [
     {
@@ -28,11 +28,6 @@ export default function Header() {
       label: t('nav.home'),
       ariaLabel: t('nav.homeAria'),
       link: `/${lang}/`
-    },
-    {
-      label: t('nav.projects'),
-      ariaLabel: t('nav.projects'),
-      link: `/${lang}/projects/`
     },
     {
       label: t('nav.about'),
@@ -43,7 +38,7 @@ export default function Header() {
       id: 'contact',
       label: t('nav.contact'),
       ariaLabel: t('nav.contactAria'),
-      link: `/${lang}/contact/`
+      link: contactHref
     }
   ];
 
@@ -103,8 +98,7 @@ export default function Header() {
             return;
           }
           if (item.id === 'contact') {
-            event.preventDefault();
-            navigate(item.link, { replace: true });
+            handleContactClick(event);
             return;
           }
         }}

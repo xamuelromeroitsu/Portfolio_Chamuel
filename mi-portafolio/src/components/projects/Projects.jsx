@@ -74,7 +74,7 @@ export default function Projects() {
   }, [localizedProjects, query]);
 
   return (
-    <section className="projects" id="proyectos">
+    <section className="projects" id="proyectos" aria-busy={loading}>
       <div className="projects-header">
         <h2>{t('projects.title')}</h2>
         <input

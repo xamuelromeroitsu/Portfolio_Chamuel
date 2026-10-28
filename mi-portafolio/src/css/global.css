@@ -24,9 +24,12 @@ body {
 
 /* El header fijo no debe tapar el inicio de las secciones ancla. */
 #inicio,
-#proyectos,
+#proyectos {
+  scroll-margin-top: clamp(2.5rem, 4vw, 3.5rem);
+}
+
 #contacto {
-  scroll-margin-top: clamp(4.5rem, 7vw, 6rem);
+  scroll-margin-top: clamp(1rem, 2vw, 1.5rem);
 }
 
 img {

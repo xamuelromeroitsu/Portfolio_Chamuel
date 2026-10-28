@@ -78,7 +78,7 @@ El servidor está en `server/index.js` y solo sirve el catálogo de proyectos y 
 
 ## Idiomas
 
-- Rutas: `/es/`, `/en/` y `/pt/`; `/` redirige a `/es/`.
+- Rutas: `/es/`, `/en/` y `/pt/`; `/` redirige a `/es/`. Proyectos se muestra en Inicio, sin página ni enlace de navegación separado. Los enlaces de contacto llevan a `/:lang/#contacto`; `/:lang/contact/` redirige a esa sección.
 - El idioma se toma de la URL; no hay selector visual.
 - Los textos están en `src/i18n/locales/`. Si añades una clave, agrégala a los tres archivos.
 - Los datos de `src/data/` son neutrales; no incluyas copy traducido ahí.

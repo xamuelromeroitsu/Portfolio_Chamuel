@@ -1,7 +1,7 @@
 // El pie reutiliza la identidad y las redes definidas en data/profile.js.
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useHomeLink } from '../../hooks/useHomeLink.js';
+import { useContactLink } from '../../hooks/useContactLink.js';
 import profile from '../../data/profile';
 
 export default function Footer() {
@@ -9,12 +9,12 @@ export default function Footer() {
   const { name, social } = profile;
   const lang = i18n.resolvedLanguage || 'es';
   const { handleClick: handleHomeClick } = useHomeLink();
+  const { href: contactHref, handleClick: handleContactClick } = useContactLink(lang);
 
   const navLinks = [
     { label: t('nav.home'), href: `/${lang}/#inicio`, home: true },
-    { label: t('nav.projects'), href: `/${lang}/projects/` },
     { label: t('nav.about'), href: `/${lang}/about/` },
-    { label: t('nav.contact'), href: `/${lang}/contact/` }
+    { label: t('nav.contact'), href: contactHref, contact: true }
   ];
 
   return (
@@ -29,16 +29,12 @@ export default function Footer() {
           <ul>
             {navLinks.map((link) => (
               <li key={link.href}>
-                {link.label === t('nav.contact') ? (
-                  <Link to={link.href}>{link.label}</Link>
-                ) : (
-                  <a
-                    href={link.href}
-                    onClick={link.home ? handleHomeClick : undefined}
-                  >
-                    {link.label}
-                  </a>
-                )}
+                <a
+                  href={link.href}
+                  onClick={link.contact ? handleContactClick : link.home ? handleHomeClick : undefined}
+                >
+                  {link.label}
+                </a>
               </li>
             ))}
           </ul>
