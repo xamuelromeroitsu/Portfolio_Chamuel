@@ -41,12 +41,12 @@ src/
 │   ├── layout/                 # Header y Footer compartidos
 │   ├── routing/                # LanguageRoute y ScrollToHash
 │   ├── hero/                   # Hero, Lanyard y ajuste responsive de la tarjeta
-│   ├── projects/               # Catálogo visual, búsqueda y tarjetas de proyectos
+│   ├── projects/               # Lista animada de proyectos con vista previa
 │   └── contact/                # Sección, formulario y estilos de contacto
 │       └── contact.css         # Estilos locales del módulo
 ├── data/
 │   ├── profile.js              # Datos neutrales: nombre, email, skills y redes
-│   ├── projects.js             # Catálogo neutral de respaldo
+│   ├── projects.js             # Enlaces e imágenes de los proyectos destacados
 │   ├── contactSubjects.js      # Códigos de materia del formulario
 │   ├── contactSchema.js        # Reglas de validación del formulario
 │   └── contactSchema.test.js   # Pruebas de validación
@@ -63,10 +63,13 @@ src/
 scripts/
 └── build-language-shells.mjs   # Shells HTML por idioma
 docs/
-└── i18n.md                     # Documentación de internacionalización
+├── i18n.md                     # Documentación de internacionalización
+└── projects-hover-links.md     # Configuración de la lista y sus imágenes
+public/
+└── images/projects/            # Capturas usadas en las vistas previas
 ```
 
-El catálogo de proyectos vive en `src/data/projects.js` y se traduce con los locales de `src/i18n/locales/`. El contacto tiene un único flujo oficial: EmailJS desde el navegador; no se guardan mensajes en archivos locales.
+Los proyectos destacados viven en `src/data/projects.js`, sus textos se traducen con los locales de `src/i18n/locales/` y sus capturas se guardan en `public/images/projects/`. Consulta `docs/projects-hover-links.md` para añadir o reemplazar proyectos e imágenes. El contacto tiene un único flujo oficial: EmailJS desde el navegador; no se guardan mensajes en archivos locales.
 
 ## Idiomas
 
@@ -103,7 +106,7 @@ Reglas:
 
 - `src/data/` guarda datos neutrales y reglas reutilizables: `profile.js` contiene identidad y valores, `projects.js` el catálogo y `contactSchema.js` la validación. Los textos traducibles viven en `src/i18n/locales/`.
 - Para cambiar el nombre, las habilidades, estadísticas o enlaces sociales, edita `src/data/profile.js`. Para cambiar role, descripción o labels de stats, edita los tres locales.
-- Para añadir o modificar una tarjeta, edita `src/data/projects.js` y añade su copia en los tres locales. Usa enlaces absolutos para páginas locales (`/asignacion-01/index.html`) y `external: true` para enlaces externos.
+- Para añadir o modificar un proyecto destacado, sigue `docs/projects-hover-links.md` y actualiza `src/data/projects.js` junto con los tres locales.
 - Para ajustar el tamaño y posición responsive del Lanyard, cambia los cortes y valores de `src/components/hero/useLanyardLayout.js`.
 - Para cambiar sus imágenes, colores, acabado o movimiento, revisa las props de `<Lanyard />` en `src/components/hero/HeroExperience.jsx`. Las imágenes configuradas deben estar en la carpeta pública `public/`.
 - Para cambiar la apariencia global, empieza por los tokens de `src/css/variables.css`; para distribución general, usa `src/css/layout.css`. Los estilos del contacto están en `src/components/contact/contact.css`.

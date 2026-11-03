@@ -16,12 +16,13 @@ describe('i18n configuration', () => {
   });
 
   it('returns project copies as objects', () => {
-    const project = i18n.t('projects.items.asignacion-01', { returnObjects: true });
+    const project = i18n.t('projects.items.mecanica-dental', {
+      returnObjects: true
+    });
 
     expect(project).toMatchObject({
       title: expect.any(String),
-      description: expect.any(String),
-      tags: expect.any(Array)
+      description: expect.any(String)
     });
   });
 });

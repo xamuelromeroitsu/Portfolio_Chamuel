@@ -45,46 +45,17 @@
   },
   "projects": {
     "title": "Projetos",
-    "searchPlaceholder": "Buscar por nome, descrição ou tecnologia...",
-    "searchAria": "Buscar projetos",
-    "empty": "Nenhum projeto encontrado com essa busca.",
-    "view": "Ver projeto",
+    "hint": "Passe o cursor sobre um projeto para ver a imagem de prévia.",
     "viewLive": "Ver ao vivo",
+    "addPreviewImage": "Adicione uma imagem em public/images/projects",
     "items": {
-      "asignacion-01": {
-        "title": "Atividade 01: Vanilla JS (Fase 1 e 2)",
-        "description": "Projeto completo que inclui UI, interações e acompanhamento de estado em vanilla JavaScript.",
-        "tags": ["JavaScript", "UI", "Fase 1", "Fase 2"]
-      },
-      "asignacion-02": {
-        "title": "Atividade 02: JS Modular (Refatoração)",
-        "description": "Versão refatorada com módulos, melhor estrutura e uma experiência de usuário mais limpa.",
-        "tags": ["JS Modular", "Refatoração", "Arquitetura"]
-      },
-      "lunashop": {
-        "title": "LunaShop: Loja de Artigos",
-        "description": "Loja online para venda de artigos com catálogo, carrinho de compras e checkout.",
-        "tags": ["E-commerce", "UI", "React"]
-      },
-      "auditoria-caos": {
-        "title": "Auditoria e Engenharia do Caos",
-        "description": "Prática de auditoria e aplicação de engenharia do caos para avaliar a resiliência de sistemas.",
-        "tags": ["Auditoria", "DevOps", "Resiliência"]
-      },
       "consola-programador": {
         "title": "Console do Desenvolvedor",
-        "description": "Ferramenta web para avaliar e diagnosticar sites, semelhante às DevTools do navegador.",
-        "tags": ["Ferramentas", "DevTools", "JavaScript"]
+        "description": "Ferramenta web para avaliar e diagnosticar sites, semelhante às DevTools do navegador."
       },
       "mecanica-dental": {
         "title": "Site de Mecânica Dentária",
-        "description": "Site para laboratório de mecânica dentária com catálogo de serviços, procedimentos e contato.",
-        "tags": ["Dental", "Landing Page", "UI"]
-      },
-      "mas-proyectos": {
-        "title": "Mais projetos",
-        "description": "Explore mais trabalhos, melhorias e projetos em desenvolvimento em breve.",
-        "tags": ["Portfólio", "Em breve"]
+        "description": "Site para laboratório de mecânica dentária com catálogo de serviços, procedimentos e contato."
       }
     }
   },

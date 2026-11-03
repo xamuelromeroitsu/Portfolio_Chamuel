@@ -48,6 +48,10 @@ describe('locales', () => {
     expect(Object.keys(locales.pt.projects.items).sort()).toEqual(
       Object.keys(locales.es.projects.items).sort()
     );
+    expect(Object.keys(locales.es.projects.items).sort()).toEqual([
+      'consola-programador',
+      'mecanica-dental'
+    ]);
   });
 
   it('has a title and description for every language', () => {

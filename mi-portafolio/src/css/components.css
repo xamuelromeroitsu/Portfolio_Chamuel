@@ -39,39 +39,6 @@ label {
   min-height: 1.5rem;
 }
 
-/* Tarjeta de proyecto. Se define una sola vez aquí para evitar que las reglas
-   duplicadas de layout.css se pisen al cambiar de tema. */
-.project-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 1.5rem;
-  padding: 1.75rem;
-  border-radius: var(--radius);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow);
-  color: var(--color-text);
-  text-decoration: none;
-  transition: transform 0.2s ease, border-color 0.2s ease,
-    box-shadow 0.2s ease, background-color 0.2s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--color-accent);
-  box-shadow: var(--shadow-hover);
-}
-
-.project-card h3 {
-  margin-bottom: 0.85rem;
-}
-
-.project-card p {
-  color: var(--color-muted);
-  line-height: 1.7;
-}
-
 /* Enlace de salto: permanece oculto hasta recibir foco por teclado. */
 .skip-link {
   position: fixed;

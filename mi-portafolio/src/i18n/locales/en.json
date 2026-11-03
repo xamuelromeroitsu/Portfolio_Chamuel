@@ -45,46 +45,17 @@
   },
   "projects": {
     "title": "Projects",
-    "searchPlaceholder": "Search by name, description or technology...",
-    "searchAria": "Search projects",
-    "empty": "No projects were found for that search.",
-    "view": "View project",
+    "hint": "Hover over a project to see its image preview.",
     "viewLive": "View live",
+    "addPreviewImage": "Add an image to public/images/projects",
     "items": {
-      "asignacion-01": {
-        "title": "Assignment 01: Vanilla JS (Phase 1 & 2)",
-        "description": "Complete project including UI, interactions and state tracking in vanilla JavaScript.",
-        "tags": ["JavaScript", "UI", "Phase 1", "Phase 2"]
-      },
-      "asignacion-02": {
-        "title": "Assignment 02: Modular JS (Refactor)",
-        "description": "Refactored version with modules, better structure and a cleaner user experience.",
-        "tags": ["Modular JS", "Refactoring", "Architecture"]
-      },
-      "lunashop": {
-        "title": "LunaShop: Art Store",
-        "description": "Online store for selling art with a catalog, shopping cart and checkout.",
-        "tags": ["E-commerce", "UI", "React"]
-      },
-      "auditoria-caos": {
-        "title": "Chaos Engineering and Audit",
-        "description": "Audit practice and application of chaos engineering to evaluate system resilience.",
-        "tags": ["Audit", "DevOps", "Resilience"]
-      },
       "consola-programador": {
         "title": "Developer Console",
-        "description": "Web tool to evaluate and diagnose websites, similar to browser DevTools.",
-        "tags": ["Tools", "DevTools", "JavaScript"]
+        "description": "Web tool to evaluate and diagnose websites, similar to browser DevTools."
       },
       "mecanica-dental": {
         "title": "Dental Mechanics Website",
-        "description": "Website for a dental mechanics laboratory with a service catalog, procedures and contact information.",
-        "tags": ["Dental", "Landing Page", "UI"]
-      },
-      "mas-proyectos": {
-        "title": "More projects",
-        "description": "Explore more work, improvements and projects currently in development.",
-        "tags": ["Portfolio", "Coming soon"]
+        "description": "Website for a dental mechanics laboratory with a service catalog, procedures and contact information."
       }
     }
   },
