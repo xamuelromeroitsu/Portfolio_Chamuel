@@ -24,6 +24,9 @@
   --color-accent-soft: rgba(6, 182, 212, 0.12);
   --color-on-accent: #042f2e;
   --color-ring: #06b6d4;
+  /* Selección verde salvia suave para evitar el azul predeterminado del navegador. */
+  --color-selection-bg: #c5d9ce;
+  --color-selection-text: #183229;
 
   /* Capas que acompañan la entrada del panel de navegación. */
   --menu-layer-1: #22d3ee;
@@ -62,6 +65,9 @@
   --color-accent-soft: rgba(34, 211, 238, 0.16);
   --color-on-accent: #042f2e;
   --color-ring: #22d3ee;
+  /* El verde más oscuro mantiene la selección discreta sobre el fondo negro. */
+  --color-selection-bg: #3c8074;
+  --color-selection-text: #f2f5f3;
 
   /* En oscuro las capas se hunden en el fondo para no deslumbrar. */
   --menu-layer-1: #0e7490;
