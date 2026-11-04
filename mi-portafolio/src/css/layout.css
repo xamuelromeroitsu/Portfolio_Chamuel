@@ -13,13 +13,6 @@
   padding-top: clamp(4rem, 7vw, 5.5rem);
 }
 
-.site-footer {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1.5rem;
-}
-
 .lanyard-overlay {
   /* La capa es visualmente superior, pero pointer-events permite seguir usando los elementos debajo. */
   position: absolute;
@@ -347,6 +340,7 @@
 
 .site-footer {
   width: 100%;
+  max-width: none;
   margin-top: 2rem;
   background:
     radial-gradient(ellipse at 12% 100%, var(--color-accent-soft), transparent 48%),
@@ -370,7 +364,7 @@
   z-index: 1;
   display: grid;
   width: 100%;
-  max-width: 1440px;
+  max-width: 1720px;
   margin: 0 auto;
 }
 
