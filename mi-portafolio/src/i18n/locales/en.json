@@ -108,7 +108,17 @@
     }
   },
   "footer": {
-    "navigation": "Navigation",
-    "socials": "Social links"
+    "brand": "Xamuel",
+    "pages": "Pages",
+    "socials": "Socials",
+    "legal": "Legal",
+    "resources": "Resources",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "cookies": "Cookie Policy",
+    "resume": "Resume",
+    "blog": "Blog",
+    "comingSoon": "Coming soon",
+    "rights": "All rights reserved."
   }
 }
