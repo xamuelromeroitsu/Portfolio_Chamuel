@@ -2,9 +2,17 @@
 import { useTranslation } from 'react-i18next';
 import profile from '../../data/profile';
 
+const cvFiles = {
+  es: 'Curriculum ATS ES- Xamuel Romero.pdf',
+  en: 'Curriculum ATS EN- Xamuel Romero.pdf',
+  pt: 'Curriculum ATS PT - Xamuel Romero.pdf'
+};
+
 export default function Hero() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { name, skills, stats } = profile;
+  const language = cvFiles[i18n.resolvedLanguage] ? i18n.resolvedLanguage : 'es';
+  const cvHref = `/documents/${encodeURIComponent(cvFiles[language])}`;
 
   return (
     <section className="hero" id="inicio">
@@ -22,6 +30,13 @@ export default function Hero() {
             <span key={skill}>{skill}</span>
           ))}
         </div>
+        <a
+          className="button hero-cv-download"
+          href={cvHref}
+          download={`cv-xamuel-romero-ats-${language}.pdf`}
+        >
+          {t('hero.downloadCv')}
+        </a>
       </div>
       <div className="hero-visual">
         <div className="hero-card">

@@ -38,6 +38,7 @@
     "label": "Portfolio",
     "role": "Web and Mobile Software Developer",
     "description": "I design and build fast, accessible and well-structured websites and web applications. This portfolio brings together my latest projects, practice work and recent jobs.",
+    "downloadCv": "Download ATS Resume",
     "stats": {
       "projects": "projects delivered",
       "ownCode": "original code"
