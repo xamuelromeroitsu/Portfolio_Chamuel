@@ -69,7 +69,7 @@ public/
 └── images/projects/            # Capturas usadas en las vistas previas
 ```
 
-Los proyectos de Inicio viven en `src/data/projects.js`; `featured: true` los muestra en la lista. El botón `∞ Ver más proyectos` tiene su propia vista previa y dirige a la página de proyectos vacía, sin desplegar otra lista. Los textos se traducen en `src/i18n/locales/` y las capturas se guardan en `public/images/projects/`. Consulta `docs/projects-hover-links.md` para añadir imágenes y proyectos. El catálogo es estático y queda guardado junto al código, no en una base de datos. El contacto tiene un único flujo oficial: EmailJS desde el navegador; no se guardan mensajes en archivos locales.
+Los proyectos de Inicio viven en `src/data/projects.js`; `featured: true` los muestra en la lista. El botón `∞ Ver más proyectos` tiene su propia vista previa y dirige a la página de proyectos vacía, sin desplegar otra lista. Los textos se traducen en `src/i18n/locales/` y las capturas se guardan en `public/images/projects/`. Consulta `docs/projects-hover-links.md` para conocer el efecto y seguir los pasos para añadir proyectos o cambiar las capturas. La animación usa Motion, ya incluido en las dependencias, y los estilos CSS del proyecto (no Tailwind). El catálogo es estático y queda guardado junto al código, no en una base de datos. El contacto tiene un único flujo oficial: EmailJS desde el navegador; no se guardan mensajes en archivos locales.
 
 ## Idiomas
 
