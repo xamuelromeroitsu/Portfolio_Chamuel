@@ -47,7 +47,8 @@
     "title": "Projetos",
     "hint": "Passe o cursor sobre um projeto para ver a imagem de prévia.",
     "viewLive": "Ver ao vivo",
-    "addPreviewImage": "Adicione uma imagem em public/images/projects",
+    "viewMore": "Ver mais projetos",
+    "addPreviewImage": "Adicione uma captura para ativar a prévia",
     "items": {
       "consola-programador": {
         "title": "Console do Desenvolvedor",

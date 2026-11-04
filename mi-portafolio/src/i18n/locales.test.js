@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import en from './locales/en.json';
 import es from './locales/es.json';
 import pt from './locales/pt.json';
+import projects from '../data/projects.js';
 
 const locales = { en, es, pt };
 
@@ -48,10 +49,15 @@ describe('locales', () => {
     expect(Object.keys(locales.pt.projects.items).sort()).toEqual(
       Object.keys(locales.es.projects.items).sort()
     );
-    expect(Object.keys(locales.es.projects.items).sort()).toEqual([
-      'consola-programador',
-      'mecanica-dental'
-    ]);
+    expect(Object.keys(locales.es.projects.items).sort()).toEqual(
+      projects.map((project) => project.id).sort()
+    );
+  });
+
+  it('marks only the two homepage projects as featured', () => {
+    expect(
+      projects.filter((project) => project.featured).map((project) => project.id)
+    ).toEqual(['consola-programador', 'mecanica-dental']);
   });
 
   it('has a title and description for every language', () => {

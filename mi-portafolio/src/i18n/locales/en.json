@@ -47,7 +47,8 @@
     "title": "Projects",
     "hint": "Hover over a project to see its image preview.",
     "viewLive": "View live",
-    "addPreviewImage": "Add an image to public/images/projects",
+    "viewMore": "View more projects",
+    "addPreviewImage": "Add a screenshot to enable the preview",
     "items": {
       "consola-programador": {
         "title": "Developer Console",

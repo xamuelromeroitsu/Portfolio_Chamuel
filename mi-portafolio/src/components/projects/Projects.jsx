@@ -9,6 +9,7 @@ import {
   useTransform,
   useVelocity
 } from 'motion/react';
+import { Link } from 'react-router-dom';
 import localProjects from '../../data/projects';
 
 const previewWidth = 272;
@@ -41,10 +42,18 @@ export default function Projects() {
     })),
     [t, i18n.resolvedLanguage]
   );
+  const visibleProjects = localizedProjects.filter((project) => project.featured);
 
-  const activeProject = localizedProjects.find(
-    (project) => project.id === activeProjectId
-  );
+  const activeProject =
+    visibleProjects.find((project) => project.id === activeProjectId) ??
+    (activeProjectId === 'more-projects'
+      ? {
+          id: 'more-projects',
+          title: t('projects.viewMore'),
+          image: '/images/projects/more-projects.jpg'
+        }
+      : null);
+  const lang = i18n.resolvedLanguage || 'es';
 
   const updatePreviewPosition = (clientX, clientY) => {
     const bounds = sectionRef.current?.getBoundingClientRect();
@@ -81,7 +90,7 @@ export default function Projects() {
       </div>
 
       <div className="projects-links">
-        {localizedProjects.map((project, index) => (
+        {visibleProjects.map((project, index) => (
           <a
             className="projects-link"
             href={project.link}
@@ -119,6 +128,26 @@ export default function Projects() {
         ))}
       </div>
 
+      <Link
+        className="projects-more"
+        to={`/${lang}/projects/`}
+        onMouseEnter={() => setActiveProjectId('more-projects')}
+        onMouseLeave={() => setActiveProjectId(null)}
+        onFocus={(event) => {
+          setActiveProjectId('more-projects');
+          updatePreviewPosition(
+            event.currentTarget.getBoundingClientRect().left + previewWidth / 2,
+            event.currentTarget.getBoundingClientRect().top + previewHeight / 2
+          );
+        }}
+        onBlur={() => setActiveProjectId(null)}
+        aria-label={t('projects.viewMore')}
+      >
+        <span className="projects-more__icon" aria-hidden="true">∞</span>
+        <span>{t('projects.viewMore')}</span>
+        <span className="projects-more__arrow" aria-hidden="true">↗</span>
+      </Link>
+
       <AnimatePresence>
         {activeProject && (
           <motion.div
@@ -144,7 +173,8 @@ export default function Projects() {
             )}
             {unavailableImage === activeProject.image && (
               <span className="projects-preview__placeholder">
-                {activeProject.title} · {t('projects.addPreviewImage')}
+                <strong>{activeProject.title}</strong>
+                <span>{t('projects.addPreviewImage')}</span>
               </span>
             )}
           </motion.div>
