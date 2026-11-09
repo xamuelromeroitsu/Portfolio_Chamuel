@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-labelledby="title description">
+  <title id="title">Flujo de recomendaciones del portafolio</title>
+  <desc id="description">El administrador crea y comparte un enlace privado. El invitado envía una recomendación que queda pendiente en Supabase. El administrador la revisa y la publica para que aparezca en el portafolio.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#101827"/>
+      <stop offset="1" stop-color="#18243a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#78f0d0"/>
+      <stop offset="1" stop-color="#41c9bd"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0 0 10 5 0 10Z" fill="#78f0d0"/>
+    </marker>
+    <style>
+      text { font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+      .title { fill: #f4f7fb; font-size: 30px; font-weight: 700; }
+      .subtitle { fill: #aebbd0; font-size: 16px; }
+      .card { fill: #202e45; stroke: #3a4b64; stroke-width: 1.5; }
+      .card-title { fill: #f4f7fb; font-size: 19px; font-weight: 650; }
+      .body { fill: #bfcbda; font-size: 14px; }
+      .tag { fill: #78f0d0; font-size: 12px; font-weight: 700; letter-spacing: 1px; }
+      .arrow { fill: none; stroke: #78f0d0; stroke-width: 2.5; marker-end: url(#arrow); }
+      .muted-arrow { fill: none; stroke: #8190a6; stroke-width: 2; stroke-dasharray: 6 6; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1200" height="700" rx="24" fill="url(#background)"/>
+  <circle cx="1090" cy="105" r="115" fill="#78f0d0" opacity=".045"/>
+  <circle cx="95" cy="625" r="150" fill="#41c9bd" opacity=".04"/>
+
+  <text class="title" x="64" y="68">Recomendaciones para tu portafolio</text>
+  <text class="subtitle" x="64" y="98">Un flujo privado para recibir, revisar y publicar testimonios con consentimiento.</text>
+
+  <rect class="card" x="64" y="155" width="300" height="170" rx="18"/>
+  <text class="tag" x="88" y="189">1 · ADMINISTRADOR</text>
+  <text class="card-title" x="88" y="222">Crea una invitación</text>
+  <text class="body" x="88" y="252">Genera un enlace aleatorio,</text>
+  <text class="body" x="88" y="274">con vencimiento y revocación.</text>
+  <text class="body" x="88" y="302">El token original no se almacena.</text>
+
+  <rect class="card" x="450" y="155" width="300" height="170" rx="18"/>
+  <text class="tag" x="474" y="189">2 · INVITADO</text>
+  <text class="card-title" x="474" y="222">Completa el formulario</text>
+  <text class="body" x="474" y="252">Escribe su recomendación y datos</text>
+  <text class="body" x="474" y="274">visibles; acepta el consentimiento.</text>
+  <text class="body" x="474" y="302">No necesita crear una cuenta.</text>
+
+  <rect class="card" x="836" y="155" width="300" height="170" rx="18"/>
+  <text class="tag" x="860" y="189">3 · SUPABASE</text>
+  <text class="card-title" x="860" y="222">Guarda como pendiente</text>
+  <text class="body" x="860" y="252">Valida el enlace en servidor,</text>
+  <text class="body" x="860" y="274">limita el acceso con RLS y</text>
+  <text class="body" x="860" y="302">protege los datos privados.</text>
+
+  <path class="arrow" d="M365 240H438"/>
+  <text class="body" x="374" y="222">comparte enlace</text>
+  <path class="arrow" d="M751 240H824"/>
+  <text class="body" x="759" y="222">envía seguro</text>
+
+  <rect class="card" x="258" y="420" width="310" height="170" rx="18"/>
+  <text class="tag" x="282" y="454">4 · REVISIÓN PRIVADA</text>
+  <text class="card-title" x="282" y="487">Decide qué se publica</text>
+  <text class="body" x="282" y="517">El administrador puede aprobar,</text>
+  <text class="body" x="282" y="539">rechazar, retirar o eliminar.</text>
+  <text class="body" x="282" y="567">El invitado no ve otros envíos.</text>
+
+  <rect x="650" y="420" width="310" height="170" rx="18" fill="#183c42" stroke="#41c9bd" stroke-width="1.5"/>
+  <text class="tag" x="674" y="454">5 · PORTAFOLIO PÚBLICO</text>
+  <text class="card-title" x="674" y="487">Muestra lo aprobado</text>
+  <text class="body" x="674" y="517">Solo aparecen recomendaciones</text>
+  <text class="body" x="674" y="539">publicadas y los datos autorizados.</text>
+  <text class="body" x="674" y="567">Correos y estados internos quedan ocultos.</text>
+
+  <path class="muted-arrow" d="M986 326C986 385 815 380 815 408"/>
+  <text class="body" x="870" y="374">pendiente para revisar</text>
+  <path class="arrow" d="M569 505H638"/>
+  <text class="body" x="575" y="487">aprobar</text>
+
+  <rect x="64" y="628" width="1072" height="1" fill="#3a4b64"/>
+  <text class="subtitle" x="64" y="661">Seguridad: autenticación del administrador · RLS · validación en servidor · consentimiento · mínimo acceso</text>
+</svg>
