@@ -37,6 +37,20 @@ describe('contactSchema', () => {
     });
   });
 
+  it('rejects incomplete email addresses', () => {
+    for (const email of ['correo', 'persona@', 'persona@dominio', '@dominio.com']) {
+      const result = contactSchema.safeParse({
+        name: 'Chamuel',
+        email,
+        subject: 'freelance',
+        message: 'Mensaje de prueba válido.'
+      });
+
+      expect(result.success, `${email} should be rejected`).toBe(false);
+      expect(result.error.flatten().fieldErrors.email).toEqual(['contact.errors.email']);
+    }
+  });
+
   it('accepts all configured contact reasons', () => {
     for (const subject of CONTACT_SUBJECTS) {
       expect(

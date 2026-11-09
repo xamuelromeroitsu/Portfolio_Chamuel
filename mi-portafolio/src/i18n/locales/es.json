@@ -98,7 +98,7 @@
     },
     "errors": {
       "name": "El nombre es muy corto.",
-      "email": "Ingresa un correo válido.",
+      "email": "Ingresa un correo válido, por ejemplo nombre@dominio.com.",
       "subject": "Selecciona el motivo de contacto.",
       "message": "El mensaje debe tener al menos 10 caracteres.",
       "configuration": "El formulario no está disponible. Inténtalo más tarde o contáctame por mis redes.",

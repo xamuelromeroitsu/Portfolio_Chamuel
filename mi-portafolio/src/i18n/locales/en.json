@@ -98,7 +98,7 @@
     },
     "errors": {
       "name": "The name is too short.",
-      "email": "Enter a valid email.",
+      "email": "Enter a valid email, for example name@domain.com.",
       "subject": "Select the reason for contact.",
       "message": "The message must be at least 10 characters long.",
       "configuration": "The form is not available. Try again later or contact me through my social links.",
